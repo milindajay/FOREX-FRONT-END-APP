@@ -1,5 +1,6 @@
 name: Deploy to FTP
-
+env:
+  CI: false
 # This workflow is triggered on pushes to the repository.
 on: push
 
