@@ -1,32 +1,30 @@
-name: Deploy to FTP
-env:
-  CI: false
-# This workflow is triggered on pushes to the repository.
 on: push
-
+name: 🚀 Deploy website on push
 jobs:
-  ftp-deploy:
-    name: Deploy to FTP Server
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
+    - name: 🚚 Get latest code
       uses: actions/checkout@v2
 
-    - name: Install Dependencies # Add this step
-      run: yarn install
-
-    - name: Build React App
-      run: yarn build
-
-    - name: List build directory contents
-      run: ls -R build
-
-    - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2
       with:
-        ftp-server: ftp://${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        node-version: '14'
+      
+    - name: 🔨 Build Project
+      run: |
+        yarn install
+        yarn build
+    
+    - name: List output files
+      run: find build/ -print
+      
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: build/
-        git-ftp-args: --insecure
-        remote-dir: ${{ secrets.FTP_REMOTE_DIR }}
