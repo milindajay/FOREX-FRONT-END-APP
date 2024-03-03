@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { signup } from '../../helpers';
+import { Navigate, redirect } from 'react-router-dom';
 
 // Assuming UserData interface is defined somewhere in your project
 interface UserData {
@@ -69,10 +70,13 @@ const RegistrationForm = () => {
 				mobileNumber: formData.mobileNumber, // Ensure correct mapping
 				secondaryPhoneNumber: formData.secondaryPhoneNumber, // Ensure correct mapping
 				nationalIdentityNumber: formData.nationalIdentityNumber, // Ensure correct mapping
+				dateOfBirth: formData.dateOfBirth,
+				nationality: formData.nationality,
 			});
 			console.log(response.data);
 			setError(null);
 			// Add any redirect or notification logic here
+			return (window.location.href = '/auth/login');
 		} catch (error) {
 			console.error(error);
 			setError('Registration failed, please try again.');

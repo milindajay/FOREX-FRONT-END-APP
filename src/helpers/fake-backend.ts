@@ -52,20 +52,20 @@ export function configureFakeBackend() {
 		});
 	});
 
-	mock.onPost('/register/').reply(function (config) {
+	mock.onPost('/users/register/').reply(function (config) {
 		return new Promise(function (resolve, reject) {
 			setTimeout(function () {
 				// get parameters from post request
 				let params = JSON.parse(config.data);
 
 				// add new users
-				let [firstName, lastName] = params.fullname.split(' ');
+				// let [firstName, lastName] = params.fullname.split(' ');
 				let newUser: UserData = {
 					id: users.length + 1,
-					username: firstName,
+					username: params.firstName,
 					password: params.password,
-					firstName: firstName,
-					lastName: lastName,
+					firstName: params.firstName,
+					lastName: params.lastName,
 					role: 'Admin',
 					token:
 						'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb2RlcnRoZW1lcyIsImlhdCI6MTU4NzM1NjY0OSwiZXhwIjoxOTAyODg5NDQ5LCJhdWQiOiJjb2RlcnRoZW1lcy5jb20iLCJzdWIiOiJzdXBwb3J0QGNvZGVydGhlbWVzLmNvbSIsImxhc3ROYW1lIjoiVGVzdCIsIkVtYWlsIjoic3VwcG9ydEBjb2RlcnRoZW1lcy5jb20iLCJSb2xlIjoiQWRtaW4iLCJmaXJzdE5hbWUiOiJIeXBlciJ9.P27f7JNBF-vOaJFpkn-upfEh3zSprYfyhTOYhijykdI',
