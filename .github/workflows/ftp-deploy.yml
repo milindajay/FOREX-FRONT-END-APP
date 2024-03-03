@@ -11,6 +11,12 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
+    - name: Install Dependencies # Add this step
+      run: yarn install
+
+    - name: Build React App
+      run: yarn build
+
     - name: List build directory contents
       run: ls -R build
 
