@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Button, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import AuthLayout from './AuthLayout'; // Ensure this path is correct
@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { signup } from '../../helpers';
-import { Navigate, redirect } from 'react-router-dom';
+// import { Navigate, redirect } from 'react-router-dom';
 
 // Assuming UserData interface is defined somewhere in your project
 interface UserData {

@@ -8,12 +8,12 @@ import Statistics from './Statistics';
 import SalesChart from './SalesChart';
 import StatisticsChart from './StatisticsChart';
 import RevenueChart from './RevenueChart';
-import Users from './Users';
-import Inbox from './Inbox';
-import Projects from './Projects';
+// import Users from './Users';
+// import Inbox from './Inbox';
+// import Projects from './Projects';
 
 // dummy data
-import { projectDetails } from './data';
+// import { projectDetails } from './data';
 
 const DashBoard1 = () => {
     // set pagetitle

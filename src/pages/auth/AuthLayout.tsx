@@ -56,6 +56,7 @@ const AuthLayout = ({ hasLogo, bottomLinks, children }: AccountLayoutProps) => {
 
                      
                         {bottomLinks}
+
                     </Col>
                 </Row>
             </Container>

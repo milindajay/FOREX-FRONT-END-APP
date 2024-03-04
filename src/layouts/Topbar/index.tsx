@@ -26,7 +26,7 @@ import logoSm from '../../assets/images/logo-sm.png';
 import avatar1 from '../../assets/images/users/user-1.jpg';
 import logoDark from '../../assets/images/logo-dark.png';
 import logoLight from '../../assets/images/logo-light.png';
-import { userInfo } from 'os';
+// import { userInfo } from 'os';
 
 type TopbarProps = {
 	openLeftMenuCallBack: () => void;

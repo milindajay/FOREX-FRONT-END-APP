@@ -45,6 +45,15 @@ const BottomLink = () => {
 						<b>{t('Sign Up')}</b>
 					</Link>
 				</p>
+
+				<p className="text-muted">
+					{t("Having trouble signing in?")}{' '}
+					<a href="mailto:support@forexcellencenet.com" className="text-dark ms-1">
+						<b>{t('Contact Support')}</b>
+					</a>
+				</p>
+
+
 			</Col>
 		</Row>
 	);
@@ -66,8 +75,8 @@ const Login = () => {
 	}, [dispatch]);
 
 	/*
-    form validation schema
-    */
+	form validation schema
+	*/
 	const schemaResolver = yupResolver(
 		yup.object().shape({
 			email: yup.string().required(t('Please enter Email')).email(t('Please enter valid Email')),
@@ -76,8 +85,8 @@ const Login = () => {
 	);
 
 	/*
-    handle form submission
-    */
+	handle form submission
+	*/
 	const onSubmit = (formData: UserData) => {
 		const data = loginUser(formData['email'], formData['password']);
 		// const user = response.data;
@@ -119,7 +128,7 @@ const Login = () => {
 						type="email"
 						name="email"
 						label={t('Email address')}
-						placeholder={t('hello@coderthemes.com')}
+						placeholder={t('hello@forexcellencenet.com')}
 						containerClass={'mb-3'}
 					/>
 					<FormInput
