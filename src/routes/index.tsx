@@ -26,7 +26,7 @@ const LockScreen = React.lazy(() => import('../pages/auth/LockScreen'));
 const Logout = React.lazy(() => import('../pages/auth/Logout'));
 
 // dashboards
-const DashBoard1 = React.lazy(() => import('../pages/dashboards/DashBoard1/'));
+const DashBoard1 = React.lazy(() => import('../pages/apps/Contacts/Profile'));
 
 // apps
 const CalendarApp = React.lazy(() => import('../pages/apps/Calendar'));

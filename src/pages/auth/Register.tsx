@@ -14,6 +14,7 @@ import { signup } from '../../helpers';
 // Assuming UserData interface is defined somewhere in your project
 interface UserData {
 	introducer: string;
+	referral_type: string;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -30,6 +31,7 @@ const RegistrationForm = () => {
 	const { t } = useTranslation();
 	const [formData, setFormData] = useState<UserData>({
 		introducer: '',
+		referral_type: 'A',
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -57,6 +59,7 @@ const RegistrationForm = () => {
 
 	const {
 		register,
+		control,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(formSchema),
@@ -72,6 +75,7 @@ const RegistrationForm = () => {
 				nationalIdentityNumber: formData.nationalIdentityNumber, // Ensure correct mapping
 				dateOfBirth: formData.dateOfBirth,
 				nationality: formData.nationality,
+				referral_type: formData.referral_type,
 			});
 			console.log(response.data);
 			setError(null);
@@ -79,7 +83,7 @@ const RegistrationForm = () => {
 			return (window.location.href = '/auth/login');
 		} catch (error) {
 			console.error(error);
-			setError('Registration failed, please try again.');
+			setError('Registration failed, please check all fields are not empty and try again.');
 		} finally {
 			setLoading(false);
 		}
@@ -104,6 +108,23 @@ const RegistrationForm = () => {
 					onChange={(e) => handleChange('introducer', e.target.value)}
 					value={formData.introducer}
 				/>
+				<FormInput
+					label={'Placement'}
+					type="select"
+					name="referral_type"
+					containerClass={'mb-3'}
+					onChange={(e) => handleChange('referral_type', e.target.value)}
+					value={formData.referral_type}
+					register={register}
+					key="select"
+					errors={errors}
+					control={control}
+				>
+					<option value="A">A</option> {/* This is now the default option */}
+					<option value="B">B</option>
+				</FormInput>
+
+
 				<FormInput
 					label={'First Name'}
 					type="text"
@@ -135,6 +156,7 @@ const RegistrationForm = () => {
 					label={'Password'}
 					type="password"
 					name="password"
+					required
 					placeholder={'Enter your password'}
 					containerClass={'mb-3'}
 					onChange={(e) => handleChange('password', e.target.value)}
