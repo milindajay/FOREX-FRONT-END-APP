@@ -25,14 +25,14 @@ const UserBox = () => {
 							{user.firstName} {user.lastName}
 						</h4>
 						<p className="text-muted">
-							<i>Member ID : {user.id}</i>
+							<i>ID : {user.id}</i>
 						</p>
 						<p className="font-13">
-							Referral Link A :  {user.id}<br />
-							Referral Link B : {user.id}
+							Referral Link A : <a href={user.referralLinkA}>{user.referralLinkA}</a> <br />
+							Referral Link B : <a href={user.referralLinkB}>{user.referralLinkB}</a>
 						</p>
 
-						{/* <ul className="social-list list-inline mt-3 mb-0">
+						<ul className="social-list list-inline mt-3 mb-0">
 							<li className="list-inline-item">
 								<Link to="#" className="social-list-item border-purple text-purple">
 									<i className="mdi mdi-facebook"></i>
@@ -53,7 +53,7 @@ const UserBox = () => {
 									<i className="mdi mdi-github"></i>
 								</Link>
 							</li>
-						</ul> */}
+						</ul>
 					</div>
 				</div>
 			</Card.Body>
