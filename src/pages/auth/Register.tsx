@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import { Button, Alert } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 import AuthLayout from './AuthLayout'; // Ensure this path is correct
 import Loader from '../../components/Loader'; // Ensure this path is correct
 import { VerticalForm, FormInput } from '../../components/form/'; // Ensure this path is correct
@@ -25,6 +24,7 @@ interface UserData {
 	nationalIdentityNumber: string; // Updated to match backend
 	dateOfBirth: string;
 	nationality: string;
+	referral_type: string;
 }
 
 const RegistrationForm = () => {
@@ -41,6 +41,7 @@ const RegistrationForm = () => {
 		nationalIdentityNumber: '',
 		dateOfBirth: '',
 		nationality: '',
+		referral_type: '',
 	});
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
@@ -68,6 +69,7 @@ const RegistrationForm = () => {
 
 	const {
 		register,
+		control,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(formSchema),
