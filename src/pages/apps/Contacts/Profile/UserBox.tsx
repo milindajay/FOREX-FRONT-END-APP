@@ -1,15 +1,33 @@
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 // images
 import profileImg from '../../../../assets/images/users/user-1.jpg';
 import { useRedux } from '../../../../hooks';
+import { useMemo } from 'react';
 
 const UserBox = () => {
 	const { appSelector } = useRedux();
 	const { user } = appSelector((state) => ({
 		user: state.Auth.user,
 	}));
+
+	const { newReferralLinkA: referralLinkA, newReferralLinkB: referralLinkB } = useMemo(() => {
+		const { referralLinkA, referralLinkB } = user;
+
+		const referralLinkAUrl = new URL(referralLinkA);
+		const referralLinkBUrl = new URL(referralLinkB);
+
+		const { origin } = window.location;
+
+		const newReferralLinkA = `${origin}/auth/register?introducer=${referralLinkAUrl.searchParams.get(
+			'ref'
+		)}&placement=${referralLinkAUrl.searchParams.get('type')}`;
+		const newReferralLinkB = `${origin}/auth/register?introducer=${referralLinkBUrl.searchParams.get(
+			'ref'
+		)}&placement=${referralLinkBUrl.searchParams.get('type')}`;
+
+		return { newReferralLinkA, newReferralLinkB };
+	}, [user]);
 
 	return (
 		<Card>
@@ -28,8 +46,30 @@ const UserBox = () => {
 							<i>ID : {user.id}</i>
 						</p>
 						<p className="font-13">
-							Referral Link A : <a href={user.referralLinkA}>{user.referralLinkA}</a> <br />
-							Referral Link B : <a href={user.referralLinkB}>{user.referralLinkB}</a>
+							<span>
+								Referral Link A{' '}
+								<button
+									className="btn btn-sm btn-primary"
+									onClick={() =>
+										navigator.clipboard
+											.writeText(referralLinkA)
+											.then(() => alert('Refferal link A copied successfully.'))
+									}>
+									Copy link
+								</button>
+							</span>
+							<span className="mx-4">
+								Referral Link B{' '}
+								<button
+									className="btn btn-sm btn-primary"
+									onClick={() =>
+										navigator.clipboard
+											.writeText(referralLinkB)
+											.then(() => alert('Refferal link A copied successfully.'))
+									}>
+									Copy link
+								</button>
+							</span>
 						</p>
 
 						<ul className="social-list list-inline mt-3 mb-0">

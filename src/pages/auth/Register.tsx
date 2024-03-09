@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import { Button, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { signup } from '../../helpers';
+import { useSearchParams } from 'react-router-dom';
 // import { Navigate, redirect } from 'react-router-dom';
 
 // Assuming UserData interface is defined somewhere in your project
@@ -27,7 +28,7 @@ interface UserData {
 }
 
 const RegistrationForm = () => {
-	const { t } = useTranslation();
+	// const { t } = useTranslation();
 	const [formData, setFormData] = useState<UserData>({
 		introducer: '',
 		firstName: '',
@@ -43,6 +44,16 @@ const RegistrationForm = () => {
 	});
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
+
+	const [URLSearchParams] = useSearchParams();
+	console.log(URLSearchParams);
+
+	useEffect(() => {
+		const introducerId = URLSearchParams.get('introducer') || '';
+		const placement = URLSearchParams.get('placement') || '';
+
+		setFormData((data) => ({ ...data, introducer: introducerId, referral_type: placement }));
+	}, [URLSearchParams]);
 
 	const handleChange = (name: keyof UserData, value: string) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
@@ -104,6 +115,21 @@ const RegistrationForm = () => {
 					onChange={(e) => handleChange('introducer', e.target.value)}
 					value={formData.introducer}
 				/>
+				<FormInput
+					label={'Placement'}
+					type="select"
+					name="referral_type"
+					containerClass={'mb-3'}
+					onChange={(e) => handleChange('referral_type', e.target.value)}
+					value={formData.referral_type}
+					register={register}
+					key="select"
+					errors={errors}
+					control={control}>
+					<option value="A">A</option> {/* This is now the default option */}
+					<option value="B">B</option>
+				</FormInput>
+
 				<FormInput
 					label={'First Name'}
 					type="text"
