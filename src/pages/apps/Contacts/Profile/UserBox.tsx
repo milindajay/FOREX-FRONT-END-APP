@@ -12,19 +12,12 @@ const UserBox = () => {
 	}));
 
 	const { newReferralLinkA: referralLinkA, newReferralLinkB: referralLinkB } = useMemo(() => {
-		const { referralLinkA, referralLinkB } = user;
-
-		const referralLinkAUrl = new URL(referralLinkA);
-		const referralLinkBUrl = new URL(referralLinkB);
+		const { id } = user;
 
 		const { origin } = window.location;
 
-		const newReferralLinkA = `${origin}/auth/register?introducer=${referralLinkAUrl.searchParams.get(
-			'ref'
-		)}&placement=${referralLinkAUrl.searchParams.get('type')}`;
-		const newReferralLinkB = `${origin}/auth/register?introducer=${referralLinkBUrl.searchParams.get(
-			'ref'
-		)}&placement=${referralLinkBUrl.searchParams.get('type')}`;
+		const newReferralLinkA = `${origin}/auth/register?introducer=${id}&placement=A`;
+		const newReferralLinkB = `${origin}/auth/register?introducer=${id}&placement=B`;
 
 		return { newReferralLinkA, newReferralLinkB };
 	}, [user]);
@@ -44,6 +37,9 @@ const UserBox = () => {
 						</h4>
 						<p className="text-muted">
 							<i>ID : {user.id}</i>
+						</p>
+						<p className="text-muted">
+							<i>Profile Status : {user.profile_status}</i>
 						</p>
 						<p className="font-13">
 							<span>
@@ -72,7 +68,7 @@ const UserBox = () => {
 							</span>
 						</p>
 
-						<ul className="social-list list-inline mt-3 mb-0">
+						{/* <ul className="social-list list-inline mt-3 mb-0">
 							<li className="list-inline-item">
 								<Link to="#" className="social-list-item border-purple text-purple">
 									<i className="mdi mdi-facebook"></i>
@@ -93,7 +89,7 @@ const UserBox = () => {
 									<i className="mdi mdi-github"></i>
 								</Link>
 							</li>
-						</ul>
+						</ul> */}
 					</div>
 				</div>
 			</Card.Body>
