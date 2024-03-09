@@ -2,32 +2,33 @@ on: push
 name: 🚀 Deploy website on push
 env:
   CI: false
-  
+  REACT_APP_API_URL: 'https://api.forexcellencenet.com/api/'
+
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
 
-    - name: Use Node.js 20
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
-      
-    - name: 🔨 Build Project
-      run: |
-        yarn install
-        yarn build
-    
-    - name: List output files
-      run: find build/ -print
-      
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: build/
+      - name: Use Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: 🔨 Build Project
+        run: |
+          yarn install
+          yarn build
+
+      - name: List output files
+        run: find build/ -print
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/
