@@ -61,15 +61,24 @@ const RegistrationForm = () => {
 	};
 
 	const formSchema = Yup.object().shape({
+		introducer: Yup.string().required('Introducer code is required'),
 		firstName: Yup.string().required('First name is required'),
 		lastName: Yup.string().required('Last name is required'),
 		email: Yup.string().email('Invalid email address').required('Email is required'),
+		password: Yup.string().required('Password is required'),
+		mobileNumber: Yup.string().required('Mobile number is required'),
+		secondaryPhoneNumber: Yup.string().required('Secondary phone number is required'),
+		address: Yup.string().required('Address is required'),
+		nationalIdentityNumber: Yup.string().required('Identity card number is required'),
+		dateOfBirth: Yup.date().required('Date of birth is required'),
+		nationality: Yup.string().required('Nationality is required'),
+		referral_type: Yup.string().required('Referral type is required'),
+
+
 		// Define the rest of your validation schema here
 	});
 
 	const {
-		register,
-		control,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(formSchema),
@@ -116,21 +125,18 @@ const RegistrationForm = () => {
 					containerClass={'mb-3'}
 					onChange={(e) => handleChange('introducer', e.target.value)}
 					value={formData.introducer}
+					readOnly
 				/>
 				<FormInput
 					label={'Placement'}
-					type="select"
+					type="text"
 					name="referral_type"
+					placeholder={'Your Placement'}
 					containerClass={'mb-3'}
 					onChange={(e) => handleChange('referral_type', e.target.value)}
 					value={formData.referral_type}
-					register={register}
-					key="select"
-					errors={errors}
-					control={control}>
-					<option value="A">A</option> {/* This is now the default option */}
-					<option value="B">B</option>
-				</FormInput>
+					readOnly
+				/>
 
 				<FormInput
 					label={'First Name'}
@@ -196,10 +202,10 @@ const RegistrationForm = () => {
 					value={formData.address}
 				/>
 				<FormInput
-					label={'NIC Number'}
+					label={'Identity Card Number'}
 					type="text"
 					name="nationalIdentityNumber"
-					placeholder={'Enter your NIC Number'}
+					placeholder={'Enter your Identity Card Number'}
 					containerClass={'mb-3'}
 					onChange={(e) => handleChange('nationalIdentityNumber', e.target.value)}
 					value={formData.nationalIdentityNumber}
