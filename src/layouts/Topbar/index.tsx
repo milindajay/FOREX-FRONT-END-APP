@@ -12,8 +12,8 @@ import { LayoutTypes } from '../../constants';
 import { useRedux } from '../../hooks';
 
 // components
-import SearchDropdown from '../../components/topbar/SearchDropdown';
-import ThemeSetting from '../../components/topbar/ThemeSetting';
+// import SearchDropdown from '../../components/topbar/SearchDropdown';
+// import ThemeSetting from '../../components/topbar/ThemeSetting';
 import TopbarSearch from '../../components/topbar/TopbarSearch';
 import NotificationDropdown from '../../components/topbar/NotificationDropdown';
 import ProfileDropdown from '../../components/topbar/ProfileDropdown';
@@ -62,22 +62,15 @@ const Topbar = ({ openLeftMenuCallBack, containerClass }: TopbarProps) => {
 		<div className="navbar-custom">
 			<div className={containerClass}>
 				<ul className="list-unstyled topnav-menu float-end mb-0">
-					<li className="d-none d-lg-block">
+					{/* <li className="d-none d-lg-block">
 						<TopbarSearch options={searchOptions} />
-					</li>
-
-					<li className="dropdown d-inline-block d-lg-none">
-						<SearchDropdown />
-					</li>
+					</li> */}
 					<li className="dropdown notification-list topbar-dropdown">
 						<NotificationDropdown notifications={notifications} />
 					</li>
 					<li className="dropdown notification-list topbar-dropdown">
 						{/* User */}
 						<ProfileDropdown userImage={avatar1} username={user.firstName || 'User'} menuItems={profileMenus} />
-					</li>
-					<li className="dropdown notification-list">
-						<ThemeSetting handleRightSideBar={handleRightSideBar} />
 					</li>
 				</ul>
 

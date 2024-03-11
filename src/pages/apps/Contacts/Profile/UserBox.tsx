@@ -1,9 +1,10 @@
-import { Card } from 'react-bootstrap';
+import { Card, Button, Table } from 'react-bootstrap';
 
 // images
 import profileImg from '../../../../assets/images/users/user-1.jpg';
 import { useRedux } from '../../../../hooks';
 import { useMemo } from 'react';
+import { formatISO, parseISO } from 'date-fns';
 
 const UserBox = () => {
 	const { appSelector } = useRedux();
@@ -32,68 +33,63 @@ const UserBox = () => {
 						className="flex-shrink-0 rounded-circle avatar-xl img-thumbnail float-start me-3"
 					/>
 					<div className="flex-grow-1 overflow-hidden">
-						<h4 className="m-0">
+						<h2>
 							{user.firstName} {user.lastName}
-						</h4>
-						<p className="text-muted">
-							<i>ID : {user.id}</i>
-						</p>
-						<p className="text-muted">
-							<i>Profile Status : {user.profile_status}</i>
-						</p>
-						<p className="font-13">
-							<span>
-								Referral Link A{' '}
-								<button
-									className="btn btn-sm btn-primary"
-									onClick={() =>
-										navigator.clipboard
-											.writeText(referralLinkA)
-											.then(() => alert('Refferal link A copied successfully.'))
-									}>
-									Copy link
-								</button>
-							</span>
-							<span className="mx-4">
-								Referral Link B{' '}
-								<button
-									className="btn btn-sm btn-primary"
-									onClick={() =>
-										navigator.clipboard
-											.writeText(referralLinkB)
-											.then(() => alert('Refferal link A copied successfully.'))
-									}>
-									Copy link
-								</button>
-							</span>
-						</p>
+						</h2>
+						<h3>
+							Member ID <span className="badge badge-outline-secondary"> {user.id}</span>
+						</h3>
+						<h5>
+							Profile Status  <span className="badge badge-soft-success">{user.profile_status}</span>
+						</h5>
+						<hr />
+						<div className="button-list">
+							<Button variant='outline-success' size="sm" className="waves-effect waves-light" onClick={() =>
+								navigator.clipboard
+									.writeText(referralLinkA)
+									.then(() => alert('Refferal link A copied successfully.'))
+							}>
+								Copy Referral Link A
+							</Button>
+							<Button variant='outline-success' size="sm" className="waves-effect waves-light" onClick={() =>
+								navigator.clipboard
+									.writeText(referralLinkB)
+									.then(() => alert('Refferal link B copied successfully.'))
+							}>
+								Copy Referral Link B
+							</Button>
 
-						{/* <ul className="social-list list-inline mt-3 mb-0">
-							<li className="list-inline-item">
-								<Link to="#" className="social-list-item border-purple text-purple">
-									<i className="mdi mdi-facebook"></i>
-								</Link>
-							</li>
-							<li className="list-inline-item">
-								<Link to="#" className="social-list-item border-danger text-danger">
-									<i className="mdi mdi-google"></i>
-								</Link>
-							</li>
-							<li className="list-inline-item">
-								<Link to="#" className="social-list-item border-info text-info">
-									<i className="mdi mdi-twitter"></i>
-								</Link>
-							</li>
-							<li className="list-inline-item">
-								<Link to="#" className="social-list-item border-secondary text-secondary">
-									<i className="mdi mdi-github"></i>
-								</Link>
-							</li>
-						</ul> */}
+						</div>
+						<hr />
+						<div className="inbox-widget">
+							<div className="inbox-item" >
+								<h4 className="inbox-item-author mb-1">Introducer: <span>{user.introducer}</span> </h4>
+								<h4 className="inbox-item-author mb-1">Registration Date: <span>{formatISO(parseISO(user.registrationDate), { representation: 'date' })}</span></h4>
+							</div>
+							<div className="inbox-item" >
+								<h4 className="inbox-item-author mb-1">Email Address: <span>{user.email}</span></h4>
+
+								<h4 className="inbox-item-author mb-1">Mobile Number: <span>{user.mobileNumber}</span></h4>
+
+								<h4 className="inbox-item-author mb-1">Secondary Mobile Number: <span>{user.secondaryPhone}</span></h4>
+	
+								<h4 className="inbox-item-author mb-1">Address: <span>{user.address}</span></h4>
+
+								<h4 className="inbox-item-author mb-1">Date of Birth: <span> {formatISO(parseISO(user.dateOfBirth), { representation: 'date' })}</span></h4>
+
+								<h4 className="inbox-item-author mb-1">National Identity Card Number: <span>{user.nationalIdentityNumber}</span></h4>
+							</div>
+			
+						</div>
+
 					</div>
 				</div>
+
 			</Card.Body>
 		</Card>
+
+
+
 	);
 };
 

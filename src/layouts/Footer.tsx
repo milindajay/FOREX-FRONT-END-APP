@@ -7,7 +7,7 @@ const Footer = () => {
             <Container fluid>
                 <Row>
                     <Col md={6}>
-                        {new Date().getFullYear()} &copy; &nbsp; <Link to="https://forexcellencenet.com/">Forexcellence Information Technology Services</Link>
+                       2022 - {new Date().getFullYear()} &copy; &nbsp; <Link to="https://forexcellencenet.com/">Forexcellence Information Technology Services EST</Link>
                     </Col>
                 </Row>
             </Container>

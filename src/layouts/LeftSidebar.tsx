@@ -24,11 +24,6 @@ const UserBox = () => {
             redirectTo: '/apps/contacts/profile',
         },
         {
-            label: 'Settings',
-            icon: 'fe-settings',
-            redirectTo: '#',
-        },
-        {
             label: 'Lock Screen',
             icon: 'fe-lock',
             redirectTo: '/auth/lock-screen',
@@ -79,7 +74,7 @@ const UserBox = () => {
                 </Dropdown.Menu>
             </Dropdown>
 
-            <ul className="list-inline">
+            {/* <ul className="list-inline">
                 <li className="list-inline-item">
                     <Link to="#" className="text-muted left-user-info">
                         <i className="mdi mdi-cog"></i>
@@ -91,7 +86,7 @@ const UserBox = () => {
                         <i className="mdi mdi-power"></i>
                     </Link>
                 </li>
-            </ul>
+            </ul> */}
         </div>
     );
 };
