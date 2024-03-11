@@ -1,5 +1,10 @@
-on: push
 name: 🚀 Deploy website on push
+
+on:
+  push:
+    branches:
+      - main
+
 env:
   CI: false
   REACT_APP_API_URL: 'https://api.forexcellencenet.com/api/'
