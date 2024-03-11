@@ -1,4 +1,4 @@
-import { Card, Button, Table } from 'react-bootstrap';
+import { Card, Button, } from 'react-bootstrap';
 
 // images
 import profileImg from '../../../../assets/images/users/user-1.jpg';

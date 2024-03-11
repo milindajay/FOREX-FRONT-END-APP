@@ -26,7 +26,7 @@ const LockScreen = React.lazy(() => import('../pages/auth/LockScreen'));
 const Logout = React.lazy(() => import('../pages/auth/Logout'));
 
 // dashboards
-// const DashBoard1 = React.lazy(() => import('../pages/dashboards/DashBoard1/'));
+const DashBoard1 = React.lazy(() => import('../pages/dashboards/DashBoard1/'));
 
 // apps
 const CalendarApp = React.lazy(() => import('../pages/apps/Calendar'));
@@ -191,7 +191,7 @@ const AllRoutes = () => {
 			children: [
 				{
 					path: 'dashboard',
-					element: <LoadComponent component={Profile} />,
+					element: <LoadComponent component={DashBoard1} />,
 				},
 				{
 					path: 'apps',

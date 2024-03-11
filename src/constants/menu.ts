@@ -20,17 +20,16 @@ const MENU_ITEMS: MenuItemTypes[] = [
         label: 'Dashboard',
         isTitle: false,
         icon: 'mdi mdi-view-dashboard-outline',
-        badge: { variant: 'success', text: '9+' },
-        url: '/dashboard',
+        url: '/',
     },
 
     { key: 'apps', label: 'Virtual Office', isTitle: true },
     {
-        key: 'apps-calendar',
         label: 'Profile',
         isTitle: false,
         icon: 'mdi mdi-account-outline',
-        url: '/',
+        url: '/apps/contacts/profile',
+        key: 'contacts-profile',
     },
     {
         key: 'apps-chat',
