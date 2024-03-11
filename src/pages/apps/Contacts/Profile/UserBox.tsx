@@ -6,6 +6,20 @@ import { useRedux } from '../../../../hooks';
 import { useMemo } from 'react';
 import { formatISO, parseISO } from 'date-fns';
 
+const safelyFormatDate = (dateStr: string) => {
+    // Check for falsy values or invalid dates
+    if (!dateStr || isNaN(Date.parse(dateStr))) {
+        return 'N/A'; // Return a placeholder or the original invalid dateStr
+    }
+
+    // Parse and format the date
+    try {
+        return formatISO(parseISO(dateStr), { representation: 'date' });
+    } catch (error) {
+        console.error('Error formatting date:', error);
+        return 'Invalid date';
+    }
+};
 const UserBox = () => {
 	const { appSelector } = useRedux();
 	const { user } = appSelector((state) => ({
@@ -64,7 +78,7 @@ const UserBox = () => {
 						<div className="inbox-widget">
 							<div className="inbox-item" >
 								<h4 className="inbox-item-author mb-1">Introducer: <span>{user.introducer}</span> </h4>
-								<h4 className="inbox-item-author mb-1">Registration Date: <span>{formatISO(parseISO(user.registrationDate), { representation: 'date' })}</span></h4>
+								<h4 className="inbox-item-author mb-1">Registration Date: <span>{safelyFormatDate(user.registrationDate)}</span></h4>
 							</div>
 							<div className="inbox-item" >
 								<h4 className="inbox-item-author mb-1">Email Address: <span>{user.email}</span></h4>
@@ -75,7 +89,7 @@ const UserBox = () => {
 	
 								<h4 className="inbox-item-author mb-1">Address: <span>{user.address}</span></h4>
 
-								<h4 className="inbox-item-author mb-1">Date of Birth: <span> {formatISO(parseISO(user.dateOfBirth), { representation: 'date' })}</span></h4>
+								<h4 className="inbox-item-author mb-1">Date of Birth: <span>{safelyFormatDate(user.dateOfBirth)}</span></h4>
 
 								<h4 className="inbox-item-author mb-1">National Identity Card Number: <span>{user.nationalIdentityNumber}</span></h4>
 							</div>
