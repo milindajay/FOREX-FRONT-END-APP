@@ -14,7 +14,7 @@ type StatisticsWidgetProps = {
 const StatisticsWidget2 = ({
     variant,
     title,
-    trendValue,
+    // trendValue,
     trendIcon,
     stats,
     subTitle,
@@ -38,7 +38,7 @@ const StatisticsWidget2 = ({
                 <div className="widget-box-2">
                     <div className="widget-detail-2 text-end">
                         <Badge bg={variant} pill className="float-start mt-3">
-                            {trendValue} <i className={trendIcon}></i>
+                            {/* {trendValue} <i className={trendIcon}></i> */}
                         </Badge>
                         <h2 className="fw-normal mb-1">{stats}</h2>
                         <p className="text-muted mb-3">{subTitle}</p>

@@ -4,13 +4,13 @@ import { ApexOptions } from 'apexcharts';
 
 type StatisticsWidget1Props = {
     title: string;
-    data: number;
+    // data: number;
     color: string;
     stats: number;
     subTitle: string;
 };
 
-const StatisticsWidget1 = ({ title, data, color, stats, subTitle }: StatisticsWidget1Props) => {
+const StatisticsWidget1 = ({ title, color, stats, subTitle }: StatisticsWidget1Props) => {
     const apexOpts: ApexOptions = {
         chart: {
             type: 'radialBar',
@@ -59,7 +59,7 @@ const StatisticsWidget1 = ({ title, data, color, stats, subTitle }: StatisticsWi
         colors: [color],
     };
 
-    const apexData = [data];
+    // const apexData = [data];
 
     return (
         <Card>
@@ -80,7 +80,7 @@ const StatisticsWidget1 = ({ title, data, color, stats, subTitle }: StatisticsWi
                     <div className="widget-chart-box-1 float-start">
                         <Chart
                             options={apexOpts}
-                            series={apexData}
+                            // series={apexData}
                             type="radialBar"
                             width={77}
                             height={77}
