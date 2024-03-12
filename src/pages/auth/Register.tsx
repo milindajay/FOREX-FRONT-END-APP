@@ -74,13 +74,10 @@ const RegistrationForm = () => {
 		nationality: Yup.string().required('Nationality is required'),
 		referral_type: Yup.string().required('Referral type is required'),
 
-
 		// Define the rest of your validation schema here
 	});
 
-	const {
-		formState: { errors },
-	} = useForm({
+	useForm({
 		resolver: yupResolver(formSchema),
 	});
 

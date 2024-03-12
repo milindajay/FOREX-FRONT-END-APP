@@ -1,11 +1,10 @@
 import { Col, Row } from 'react-bootstrap';
 
 // component
-import StatisticsWidget1 from '../../../components/StatisticsWidget1';
+// import StatisticsWidget1 from '../../../components/StatisticsWidget1';
 import StatisticsWidget2 from '../../../components/StatisticsWidget2';
-import { useRedux } from '../../../hooks'; 
+import { useRedux } from '../../../hooks';
 // import { useMemo } from 'react';
-
 
 const Statistics = () => {
 	const { appSelector } = useRedux();
@@ -14,54 +13,53 @@ const Statistics = () => {
 	}));
 
 	return (
-
-        <Row>
-            <Col xl={3} md={6}>
-            <StatisticsWidget2
-                    variant="success"
-                    title="Sales Summary"
-                    trendValue="35%"
-                    trendIcon="mdi mdi-trending-up"
-                    stats={user.salesSummary}
-                    subTitle="Total Sales"
-                    progress={100}
-                />
-            </Col>
-            <Col xl={3} md={6}>
-                <StatisticsWidget2
-                    variant="success"
-                    title="Total Withdrawals"
-                    trendValue="10%"
-                    trendIcon="mdi mdi-trending-up"
-                    stats={user.debitCount}
-                    subTitle="Total Withdrawals"
-                    progress={100}
-                />
-            </Col>
-            <Col xl={3} md={6}>
-            <StatisticsWidget2
-                    variant="success"
-                    title="Total intro Count"
-                    trendValue="10%"
-                    trendIcon="mdi mdi-trending-up"
-                    stats={user.introCount}
-                    subTitle="Total intro Count"
-                    progress={100}
-                />
-            </Col>
-            <Col xl={3} md={6}>
-                <StatisticsWidget2
-                    variant="success"
-                    title="Total Cashback"
-                    trendValue="32%"
-                    trendIcon="mdi mdi-trending-up"
-                    stats={user.cashBack}
-                    subTitle="Total Cashback"
-                    progress={100}
-                />
-            </Col>
-        </Row>
-    );
+		<Row>
+			<Col xl={3} md={6}>
+				<StatisticsWidget2
+					variant="success"
+					title="Sales Summary"
+					trendValue="35%"
+					trendIcon="mdi mdi-trending-up"
+					stats={user.salesSummary}
+					subTitle="Total Sales"
+					progress={100}
+				/>
+			</Col>
+			<Col xl={3} md={6}>
+				<StatisticsWidget2
+					variant="success"
+					title="Total Withdrawals"
+					trendValue="10%"
+					trendIcon="mdi mdi-trending-up"
+					stats={user.debitCount}
+					subTitle="Total Withdrawals"
+					progress={100}
+				/>
+			</Col>
+			<Col xl={3} md={6}>
+				<StatisticsWidget2
+					variant="success"
+					title="Total intro Count"
+					trendValue="10%"
+					trendIcon="mdi mdi-trending-up"
+					stats={user.introCount}
+					subTitle="Total intro Count"
+					progress={100}
+				/>
+			</Col>
+			<Col xl={3} md={6}>
+				<StatisticsWidget2
+					variant="success"
+					title="Total Cashback"
+					trendValue="32%"
+					trendIcon="mdi mdi-trending-up"
+					stats={user.cashBack}
+					subTitle="Total Cashback"
+					progress={100}
+				/>
+			</Col>
+		</Row>
+	);
 };
 
 export default Statistics;

@@ -50,6 +50,7 @@
 		"react-joyride": "^2.3.2",
 		"react-loader-spinner": "^6.1.6",
 		"react-nestable": "^2.0.0",
+		"react-organizational-chart": "^2.2.1",
 		"react-query": "^3.39.3",
 		"react-redux": "^7.2.6",
 		"react-responsive-masonry": "^2.1.4",
@@ -114,5 +115,19 @@
 		"@types/react-text-mask": "^5.4.11",
 		"@types/redux-saga": "^0.10.5",
 		"prettier": "2.5.1"
+	},
+	"overrides": {
+		"@fullcalendar/react": {
+			"react": "18.2.0",
+			"react-dom": "18.2.0"
+		},
+		"google-maps-react": {
+			"react": "18.2.0",
+			"react-dom": "18.2.0"
+		},
+		"react-albus": {
+			"react": "18.2.0",
+			"react-dom": "18.2.0"
+		}
 	}
 }

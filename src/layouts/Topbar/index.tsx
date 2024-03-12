@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 // actions
-import { showRightSidebar } from '../../redux/actions';
+// import { showRightSidebar } from '../../redux/actions';
 
 // constants
 import { LayoutTypes } from '../../constants';
@@ -14,12 +14,12 @@ import { useRedux } from '../../hooks';
 // components
 // import SearchDropdown from '../../components/topbar/SearchDropdown';
 // import ThemeSetting from '../../components/topbar/ThemeSetting';
-import TopbarSearch from '../../components/topbar/TopbarSearch';
+// import TopbarSearch from '../../components/topbar/TopbarSearch';
 import NotificationDropdown from '../../components/topbar/NotificationDropdown';
 import ProfileDropdown from '../../components/topbar/ProfileDropdown';
 
 // dummy data
-import { notifications, profileMenus, searchOptions } from './data';
+import { notifications, profileMenus } from './data';
 
 // images
 import logoSm from '../../assets/images/logo-sm.png';
@@ -34,7 +34,7 @@ type TopbarProps = {
 };
 
 const Topbar = ({ openLeftMenuCallBack, containerClass }: TopbarProps) => {
-	const { dispatch, appSelector } = useRedux();
+	const { appSelector } = useRedux();
 	const [isopen, setIsopen] = useState<boolean>(false);
 
 	const { layout, pageTitle, user } = appSelector((state) => ({
@@ -54,9 +54,9 @@ const Topbar = ({ openLeftMenuCallBack, containerClass }: TopbarProps) => {
 	/**
 	 * Toggles the right sidebar
 	 */
-	const handleRightSideBar = () => {
-		dispatch(showRightSidebar());
-	};
+	// const handleRightSideBar = () => {
+	// 	dispatch(showRightSidebar());
+	// };
 
 	return (
 		<div className="navbar-custom">

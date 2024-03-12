@@ -4,17 +4,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
+// import { StrictMode } from 'react';
 
 const store = configureStore({}); // Configure your store
 
 const container = document.getElementById('root');
 if (container) {
-  const root = createRoot(container); // Create a root instance
-  root.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+	const root = createRoot(container); // Create a root instance
+	root.render(
+		<Provider store={store}>
+			<App />
+		</Provider>
+	);
 }
 
 // If you want to start measuring performance in your app, pass a function
