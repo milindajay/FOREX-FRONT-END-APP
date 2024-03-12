@@ -36,7 +36,7 @@ const MENU_ITEMS: MenuItemTypes[] = [
         label: 'Referrals',
         isTitle: false,
         icon: 'mdi mdi-human-capacity-increase',
-        url: '/',
+        url: 'pages/timeline',
     },
     {
         key: 'page-pricing',
@@ -895,7 +895,7 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
                     },
                     {
                         key: 'page-timeline',
-                        label: 'Timeline',
+                        label: 'Referral',
                         url: '/pages/timeline',
                         parentKey: 'extra-pages',
                     },
