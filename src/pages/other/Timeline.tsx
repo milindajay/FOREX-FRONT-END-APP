@@ -35,22 +35,26 @@ const ReferralTree: FC = () => {
 	const [referralData, setReferralData] = useState<MemberData[] | null>(null);
 
 	useEffect(() => {
+		console.log(user); // Add this to check what the user object contains at the time of the call
+	
 		if (!user) {
 			console.log('User data is not available in Redux state.');
 			return;
 		}
-
+	
 		const fetchReferralTree = async () => {
 			try {
-				const response = await axios.get(`/referral-tree/3667`);
+				const response = await axios.get(`/referral-tree/${user.id}`);
 				setReferralData(response.data);
 			} catch (error) {
 				console.error('Error fetching referral tree:', error);
 			}
 		};
-
+	
 		fetchReferralTree();
 	}, [user]);
+	
+	
 
 	return (
 		<Card>
