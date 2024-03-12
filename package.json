@@ -51,6 +51,7 @@
 		"react-loader-spinner": "^6.1.6",
 		"react-nestable": "^2.0.0",
 		"react-organizational-chart": "^2.2.1",
+		"react-player": "^2.15.1",
 		"react-query": "^3.39.3",
 		"react-redux": "^7.2.6",
 		"react-responsive-masonry": "^2.1.4",

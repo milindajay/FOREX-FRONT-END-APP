@@ -47,22 +47,51 @@ const MENU_ITEMS: MenuItemTypes[] = [
         
     },
     {
-        key: 'apps-tasks',
+        // key: 'apps-tasks',
+        key: 'courses',
         label: 'Courses',
         isTitle: false,
         icon: 'mdi mdi-clipboard-outline',
         children: [
             {
-                key: 'task-kanban',
+                // key: 'task-kanban',
+                key: 'forex-master-course',
                 label: 'Forex Trading Master Course',
                 url: '/',
-                parentKey: 'apps-tasks',
+                parentKey: 'courses',
+                children: [
+                    {
+                        key: 'beginner-course',
+                        label: 'Beginer',
+                        url: 'pages/courses/Forex/Beginner',
+                        parentKey: 'forex-master-course',
+                    },
+                    {
+                        key: 'intermediate-course',
+                        label: 'Intermediate',
+                        url: 'pages/courses/Forex/Intermediate',
+                        parentKey: 'forex-master-course',
+                    },
+                    {
+                        key: 'advanced-course',
+                        label: 'Advanced',
+                        url: 'pages/courses/Forex/Advanced',
+                        parentKey: 'forex-master-course',
+                    },
+                    {
+                        key: 'master-course',
+                        label: 'Master',
+                        url: 'pages/courses/Forex/Master',
+                        parentKey: 'forex-master-course',
+                    },
+                ],
             },
+            
             {
                 key: 'task-details',
-                label: 'Crypto Trading Master Course',
+                label: 'Crypto Trading Master Course (Coming Soon)',
                 url: '/',
-                parentKey: 'apps-tasks',
+                parentKey: 'courses',
             },
         ],
     },

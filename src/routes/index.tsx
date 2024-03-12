@@ -47,9 +47,9 @@ const Profile = React.lazy(() => import('../pages/apps/Contacts/Profile'));
 const Starter = React.lazy(() => import('../pages/other/Starter'));
 const Pricing = React.lazy(() => import('../pages/other/Pricing'));
 const ReferralTree = React.lazy(() => import('../pages/other/Timeline'));
-const Invoice = React.lazy(() => import('../pages/other/Invoice'));
-const FAQ = React.lazy(() => import('../pages/other/FAQ'));
-const Gallery = React.lazy(() => import('../pages/other/Gallery'));
+// const Invoice = React.lazy(() => import('../pages/other/Invoice'));
+// const FAQ = React.lazy(() => import('../pages/other/FAQ'));
+// const Gallery = React.lazy(() => import('../pages/other/Gallery'));
 const Error404 = React.lazy(() => import('../pages/other/Error404'));
 const Error500 = React.lazy(() => import('../pages/other/Error500'));
 const Maintenance = React.lazy(() => import('../pages/other/Maintenance'));
@@ -74,6 +74,13 @@ const PopoversAndTooltips = React.lazy(() => import('../pages/uikit/PopoversAndT
 const GeneralUI = React.lazy(() => import('../pages/uikit/GeneralUI'));
 const Typography = React.lazy(() => import('../pages/uikit/Typography'));
 const Grid = React.lazy(() => import('../pages/uikit/Grid'));
+
+// Courses
+
+const BeginnerCourse = React.lazy(() => import('../pages/courses/Forex/Beginner')); 
+const IntermediateCourse = React.lazy(() => import('../pages/courses/Forex/Intermediate'));
+const AdvancedCourse = React.lazy(() => import('../pages/courses/Forex/Advanced'));
+const MasterCourse = React.lazy(() => import('../pages/courses/Forex/Master'));
 
 // widgets
 const Widgets = React.lazy(() => import('../pages/uikit/Widgets'));
@@ -250,22 +257,27 @@ const AllRoutes = () => {
 							path: 'timeline',
 							element: (
 								<Suspense fallback={<div>Loading...</div>}>
-								  <ReferralTree />
+									<ReferralTree />
 								</Suspense>
-							  ),
+							),
 						},
 						{
-							path: 'invoice',
-							element: <LoadComponent component={Invoice} />,
+							path: 'courses/Forex/Beginner',
+							element: <LoadComponent component={BeginnerCourse} />,
 						},
 						{
-							path: 'faq',
-							element: <LoadComponent component={FAQ} />,
+							path: 'courses/Forex/Intermediate',
+							element: <LoadComponent component={IntermediateCourse} />,
 						},
 						{
-							path: 'gallery',
-							element: <LoadComponent component={Gallery} />,
+							path: 'courses/Forex/Advanced',
+							element: <LoadComponent component={AdvancedCourse} />,
 						},
+						{
+							path: 'courses/Forex/Master',
+							element: <LoadComponent component={MasterCourse} />,
+						},
+						
 					],
 				},
 				{
