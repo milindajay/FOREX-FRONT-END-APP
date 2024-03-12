@@ -6,6 +6,7 @@ import DefaultLayout from '../layouts/Default';
 import VerticalLayout from '../layouts/Vertical';
 import HorizontalLayout from '../layouts/Horizontal/';
 
+
 // components
 import PrivateRoute from './PrivateRoute';
 import Root from './Root';
@@ -15,6 +16,7 @@ import { LayoutTypes } from '../constants';
 
 // hooks
 import { useRedux } from '../hooks';
+
 
 // lazy load all the views
 // auth
@@ -37,11 +39,14 @@ const TaskDetail = React.lazy(() => import('../pages/apps/Tasks/Detail'));
 const Projects = React.lazy(() => import('../pages/apps/Projects'));
 const List = React.lazy(() => import('../pages/apps/Contacts/List'));
 const Profile = React.lazy(() => import('../pages/apps/Contacts/Profile'));
+// const ReferralsIndex = React.lazy(() => import('../pages/apps/Referrals'));
+
+
 
 // extra pages
 const Starter = React.lazy(() => import('../pages/other/Starter'));
 const Pricing = React.lazy(() => import('../pages/other/Pricing'));
-const Timeline = React.lazy(() => import('../pages/other/Timeline'));
+const ReferralTree = React.lazy(() => import('../pages/other/Timeline'));
 const Invoice = React.lazy(() => import('../pages/other/Invoice'));
 const FAQ = React.lazy(() => import('../pages/other/FAQ'));
 const Gallery = React.lazy(() => import('../pages/other/Gallery'));
@@ -243,7 +248,11 @@ const AllRoutes = () => {
 						},
 						{
 							path: 'timeline',
-							element: <LoadComponent component={Timeline} />,
+							element: (
+								<Suspense fallback={<div>Loading...</div>}>
+								  <ReferralTree />
+								</Suspense>
+							  ),
 						},
 						{
 							path: 'invoice',
