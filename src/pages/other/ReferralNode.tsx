@@ -58,7 +58,7 @@ const ReferralNode: FC<ReferralNodeProps> = ({ members }) => {
 								Name : {user.firstName} {user.lastName} (You)
 							</div>
 							<div className="text-muted">Member ID : {user.id}</div>
-							<div className="text-muted">Your Introducer : {user.introducer}</div>
+							<div className="text-muted">Introducer : {user.introducer}</div>
 							<hr />
 							<div className="text-muted mt-1">84:0</div>
 						</div>
