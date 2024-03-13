@@ -44,7 +44,7 @@ const SalesChart = () => {
                 useSeriesColors: true,
             },
         },
-        labels: ['In-Store Sales', 'Download Sales', 'Mail-Order Sales'],
+        labels: ['Direct Sales', 'Referral Bonus', 'Cash-back'],
         tooltip: {
             enabled: false,
         },

@@ -10,7 +10,7 @@ interface ReferralNodeProps {
 	members: MemberData[];
 }
 
-function PersonNode({ first_name, last_name, children, member_id, introducer }: MemberData) {
+function PersonNode({ first_name, last_name, children, member_id, introducer, sideAPoints, sideBPoints, sideARemaining, sideBRemaining }: MemberData) {
 	return (
 		<TreeNode
 			label={
@@ -22,9 +22,14 @@ function PersonNode({ first_name, last_name, children, member_id, introducer }: 
 					</div>
 					<div className="text-muted">Member ID : {member_id}</div>
 					{/* <div className="text-muted">{children?.length} : 0</div> */}
-					<div className="text-muted">Introducer: {introducer}</div>
+					<div className="text-muted">Your Introducer: {introducer}</div>
 					<hr />
-					<div className="text-muted mt-1">84:0</div>
+					<div className="text-muted mt-1 text-start">
+						<p className='text-dark'>Side A Points: {sideAPoints} </p>
+						<p className='text-dark'>Side B Points: {sideBPoints} </p>
+						<p className='text-dark'>Side A Remaining: {sideARemaining} </p>
+						<p className='text-dark'>Side B Remaining: {sideBRemaining} </p>
+					</div>
 
 
 					{/* Render LineConnectors and child PersonNodes if they exist */}
@@ -55,12 +60,11 @@ const ReferralNode: FC<ReferralNodeProps> = ({ members }) => {
 						<div className="d-inline-block bg-light bg-gradient p-3">
 							<div className="mb-1 col"><img src={profileImg} alt={user.firstName} className="flex-shrink-0 rounded-circle avatar-md img-thumbnail" /></div>
 							<div className="mb-0">
-								Name : {user.firstName} {user.lastName} (You)
+								{user.firstName} {user.lastName} (You)
 							</div>
 							<div className="text-muted">Member ID : {user.id}</div>
 							<div className="text-muted">Your Introducer : {user.introducer}</div>
-							<hr />
-							<div className="text-muted mt-1">84:0</div>
+						
 						</div>
 					}>
 					{members.map((member) => (

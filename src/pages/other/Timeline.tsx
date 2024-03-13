@@ -13,6 +13,10 @@ export interface MemberData {
 	referral_type: string;
 	introducer: number;
 	children?: MemberData[];
+	sideAPoints?: number;
+	sideBPoints?: number;
+	sideARemaining?: number;
+	sideBRemaining?: number;
 }
 
 const ReferralTree: FC = () => {
