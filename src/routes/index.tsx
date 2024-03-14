@@ -6,7 +6,6 @@ import DefaultLayout from '../layouts/Default';
 import VerticalLayout from '../layouts/Vertical';
 import HorizontalLayout from '../layouts/Horizontal/';
 
-
 // components
 import PrivateRoute from './PrivateRoute';
 import Root from './Root';
@@ -17,7 +16,6 @@ import { LayoutTypes } from '../constants';
 // hooks
 import { useRedux } from '../hooks';
 
-
 // lazy load all the views
 // auth
 const Login = React.lazy(() => import('../pages/auth/Login'));
@@ -26,6 +24,8 @@ const Confirm = React.lazy(() => import('../pages/auth/Confirm'));
 const ForgetPassword = React.lazy(() => import('../pages/auth/ForgetPassword'));
 const LockScreen = React.lazy(() => import('../pages/auth/LockScreen'));
 const Logout = React.lazy(() => import('../pages/auth/Logout'));
+const Payment = React.lazy(() => import('../pages/auth/Payment'));
+const PaymentCompleted = React.lazy(() => import('../pages/auth/PaymentCompletion'));
 
 // dashboards
 const DashBoard1 = React.lazy(() => import('../pages/dashboards/DashBoard1/'));
@@ -40,8 +40,6 @@ const Projects = React.lazy(() => import('../pages/apps/Projects'));
 const List = React.lazy(() => import('../pages/apps/Contacts/List'));
 const Profile = React.lazy(() => import('../pages/apps/Contacts/Profile'));
 // const ReferralsIndex = React.lazy(() => import('../pages/apps/Referrals'));
-
-
 
 // extra pages
 const Starter = React.lazy(() => import('../pages/other/Starter'));
@@ -77,7 +75,7 @@ const Grid = React.lazy(() => import('../pages/uikit/Grid'));
 
 // Courses
 
-const BeginnerCourse = React.lazy(() => import('../pages/courses/Forex/Beginner')); 
+const BeginnerCourse = React.lazy(() => import('../pages/courses/Forex/Beginner'));
 const IntermediateCourse = React.lazy(() => import('../pages/courses/Forex/Intermediate'));
 const AdvancedCourse = React.lazy(() => import('../pages/courses/Forex/Advanced'));
 const MasterCourse = React.lazy(() => import('../pages/courses/Forex/Master'));
@@ -172,6 +170,8 @@ const AllRoutes = () => {
 						{ path: 'forget-password', element: <LoadComponent component={ForgetPassword} /> },
 						{ path: 'lock-screen', element: <LoadComponent component={LockScreen} /> },
 						{ path: 'logout', element: <LoadComponent component={Logout} /> },
+						{ path: 'payment', element: <LoadComponent component={Payment} /> },
+						{ path: 'payment-completed', element: <LoadComponent component={PaymentCompleted} /> },
 					],
 				},
 				{
@@ -277,7 +277,6 @@ const AllRoutes = () => {
 							path: 'courses/Forex/Master',
 							element: <LoadComponent component={MasterCourse} />,
 						},
-						
 					],
 				},
 				{

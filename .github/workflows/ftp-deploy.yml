@@ -8,6 +8,7 @@ on:
 env:
   CI: false
   REACT_APP_API_URL: 'https://api.forexcellencenet.com/api/'
+  REACT_APP_STRIPE_PUBLISHABLE_KEY: ${{ secrets.REACT_APP_STRIPE_PUBLISHABLE_KEY }}
 
 jobs:
   web-deploy:
