@@ -19,7 +19,9 @@ const StripeCheckout = (props: Props) => {
 
 			setIsProcessing(true);
 
-			if (!stripe || !elements || !clientSecret) return;
+			if (!stripe || !elements || !clientSecret) {
+				return setIsProcessing(false);
+			}
 
 			const { error: err } = await elements.submit();
 			if (err) console.error(err);
@@ -33,6 +35,8 @@ const StripeCheckout = (props: Props) => {
 			});
 
 			if (error) console.error(error);
+
+			setIsProcessing(false);
 		},
 		[clientSecret, elements, newPlanData.id, newPlanData.referral_points, newPlanData.total, stripe]
 	);
@@ -41,7 +45,7 @@ const StripeCheckout = (props: Props) => {
 		<form id="payment-form" className="mw-50" onSubmit={handleSubmit}>
 			<h1>Pay with Stripe</h1>
 			<PaymentElement />
-			<Button disabled={isProcessing} type="submit">
+			<Button className="waves-effect waves-light btn btn-success mt-4" disabled={isProcessing} type="submit">
 				Continue
 			</Button>
 		</form>
