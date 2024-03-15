@@ -25,6 +25,7 @@ const ForgetPassword = React.lazy(() => import('../pages/auth/ForgetPassword'));
 const LockScreen = React.lazy(() => import('../pages/auth/LockScreen'));
 const Logout = React.lazy(() => import('../pages/auth/Logout'));
 const Payment = React.lazy(() => import('../pages/auth/Payment'));
+const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
 const PaymentCompleted = React.lazy(() => import('../pages/auth/PaymentCompletion'));
 
 // dashboards
@@ -170,6 +171,7 @@ const AllRoutes = () => {
 						{ path: 'forget-password', element: <LoadComponent component={ForgetPassword} /> },
 						{ path: 'lock-screen', element: <LoadComponent component={LockScreen} /> },
 						{ path: 'logout', element: <LoadComponent component={Logout} /> },
+						{ path: 'verify-email', element: <LoadComponent component={VerifyEmail} /> },
 						{ path: 'payment', element: <LoadComponent component={Payment} /> },
 						{ path: 'payment-completed', element: <LoadComponent component={PaymentCompleted} /> },
 					],

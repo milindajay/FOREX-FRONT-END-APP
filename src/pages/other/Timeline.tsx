@@ -5,6 +5,7 @@ import axios from 'axios';
 import { usePageTitle } from '../../hooks';
 import { useRedux } from '../../hooks'; // Make sure the import path matches where you have defined useRedux
 import ReferralNode from './ReferralNode';
+import { useSearchParams } from 'react-router-dom';
 
 export interface MemberData {
 	member_id: string;
@@ -12,7 +13,9 @@ export interface MemberData {
 	last_name: string;
 	referral_type: string;
 	introducer: number;
-	children?: MemberData[];
+	children: MemberData[];
+	sideAChildren: MemberData[];
+	sideBChildren: MemberData[];
 	sideAPoints?: number;
 	sideBPoints?: number;
 	sideARemaining?: number;
@@ -31,6 +34,7 @@ const ReferralTree: FC = () => {
 		],
 	});
 
+	const [searchParams] = useSearchParams();
 	const { appSelector } = useRedux();
 	const { user } = appSelector((state) => ({
 		user: state.Auth.user,
@@ -40,25 +44,25 @@ const ReferralTree: FC = () => {
 
 	useEffect(() => {
 		console.log(user); // Add this to check what the user object contains at the time of the call
-	
+
 		if (!user) {
 			console.log('User data is not available in Redux state.');
 			return;
 		}
-	
+
+		const userId = searchParams.get('userId') || user.id;
+
 		const fetchReferralTree = async () => {
 			try {
-				const response = await axios.get(`/referral-tree/${user.id}`);
+				const response = await axios.get(`/referral-tree/${userId}`);
 				setReferralData(response.data);
 			} catch (error) {
 				console.error('Error fetching referral tree:', error);
 			}
 		};
-	
+
 		fetchReferralTree();
-	}, [user]);
-	
-	
+	}, [searchParams, user]);
 
 	return (
 		<Card>

@@ -1,16 +1,23 @@
 import { FC } from 'react';
 import { Card } from 'react-bootstrap';
 import { MemberData } from './Timeline';
-import { TreeNode } from 'react-organizational-chart';
+import { Tree, TreeNode } from 'react-organizational-chart';
 import profileImg from '../../assets/images/users/user-1.jpg';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface ReferralNodeProps {
 	members: MemberData[];
 }
 
+interface PersonNodeProps extends MemberData {
+	isParent?: boolean;
+}
+
 function PersonNode({
 	first_name,
 	last_name,
+	sideAChildren,
+	sideBChildren,
 	children,
 	member_id,
 	introducer,
@@ -18,11 +25,18 @@ function PersonNode({
 	sideBPoints,
 	sideARemaining,
 	sideBRemaining,
-}: MemberData) {
+	isParent = false,
+}: PersonNodeProps) {
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	return (
 		<TreeNode
 			label={
-				<div className="d-inline-block bg-light bg-gradient text-dark p-3">
+				<div
+					className="d-inline-block bg-light bg-gradient text-dark p-3"
+					onClick={() =>
+						searchParams.get('userId') !== member_id && !isParent && setSearchParams({ userId: member_id })
+					}>
 					{/* <img src="path-to-avatar" alt={`${first_name} ${last_name}`} className="rounded-circle mb-2" /> */}
 					<div className="mb-1 col">
 						<img src={profileImg} alt={first_name} className="flex-shrink-0 rounded-circle avatar-md img-thumbnail" />
@@ -44,24 +58,62 @@ function PersonNode({
 					{/* Render LineConnectors and child PersonNodes if they exist */}
 				</div>
 			}>
-			{children &&
-				children.map((child) => (
-					<>
-						{/* <LineConnector /> */}
-						<PersonNode {...child} />
-					</>
-				))}
+			{/* <TreeNode
+				label={
+					<div>
+						{sideAChildren?.length > 0 ? sideAChildren?.map((child) => <PersonNode {...child} />) : <span>A slot</span>}
+					</div>
+				}
+			/>
+			<TreeNode
+				label={
+					<div>
+						{sideBChildren?.length > 0 ? sideBChildren?.map((child) => <PersonNode {...child} />) : <span>B slot</span>}
+					</div>
+				}
+			/> */}
+			{isParent ? (
+				<>
+					<TreeNode label={<div>A</div>}>
+						{sideAChildren?.length > 0 ? sideAChildren?.map((child) => <PersonNode {...child} />) : undefined}
+					</TreeNode>
+
+					<TreeNode label={<div>B</div>}>
+						{sideBChildren?.length > 0 ? sideBChildren?.map((child) => <PersonNode {...child} />) : undefined}
+					</TreeNode>
+				</>
+			) : (
+				<>
+					<TreeNode label={<></>}>
+						{children?.length > 0 ? children.map((child) => <PersonNode {...child} />) : undefined}
+					</TreeNode>
+				</>
+			)}
 		</TreeNode>
 	);
 }
 
 const ReferralNode: FC<ReferralNodeProps> = ({ members }) => {
+	const [searchParams] = useSearchParams();
+	const navigate = useNavigate();
+
 	return (
 		<Card className="overflow-auto">
 			<Card.Body>
-				{members.map((member) => (
-					<PersonNode {...member} />
-				))}
+				<Tree
+					label={
+						<div>
+							{searchParams.get('userId') && (
+								<button className="btn btn-secondary" onClick={() => navigate(-1)}>
+									Go Back
+								</button>
+							)}
+						</div>
+					}>
+					{members.map((member) => (
+						<PersonNode {...member} isParent />
+					))}
+				</Tree>
 			</Card.Body>
 		</Card>
 	);
