@@ -16,6 +16,10 @@ export interface MemberData {
 	children: MemberData[];
 	sideAChildren: MemberData[];
 	sideBChildren: MemberData[];
+	sideAReferral: MemberData | null;
+	sideBReferral: MemberData | null;
+	referral_side_A_member_id: number | null;
+	referral_side_B_member_id: number | null;
 	sideAPoints?: number;
 	sideBPoints?: number;
 	sideARemaining?: number;

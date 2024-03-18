@@ -16,15 +16,16 @@ interface PersonNodeProps extends MemberData {
 function PersonNode({
 	first_name,
 	last_name,
-	sideAChildren,
-	sideBChildren,
-	children,
+	sideAReferral,
+	sideBReferral,
 	member_id,
 	introducer,
 	sideAPoints,
 	sideBPoints,
 	sideARemaining,
 	sideBRemaining,
+	referral_side_A_member_id,
+	referral_side_B_member_id,
 	isParent = false,
 }: PersonNodeProps) {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -58,6 +59,25 @@ function PersonNode({
 					{/* Render LineConnectors and child PersonNodes if they exist */}
 				</div>
 			}>
+			{/* <TreeNode label={<div>A</div>}>
+				{sideAChildren?.length > 0 ? sideAChildren?.map((child) => <PersonNode {...child} />) : undefined}
+			</TreeNode>
+
+			<TreeNode label={<div>B</div>}>
+				{sideBChildren?.length > 0 ? sideBChildren?.map((child) => <PersonNode {...child} />) : undefined}
+			</TreeNode> */}
+			{referral_side_A_member_id || referral_side_B_member_id ? (
+				<>
+					<TreeNode label={<div>A {referral_side_A_member_id === null && <div>(Empty slot)</div>}</div>}>
+						{sideAReferral ? <PersonNode {...sideAReferral} /> : undefined}
+					</TreeNode>
+
+					<TreeNode label={<div>B {referral_side_B_member_id === null && <div>(Empty slot)</div>}</div>}>
+						{sideBReferral ? <PersonNode {...sideBReferral} /> : undefined}
+					</TreeNode>
+				</>
+			) : undefined}
+
 			{/* <TreeNode
 				label={
 					<div>
@@ -72,7 +92,7 @@ function PersonNode({
 					</div>
 				}
 			/> */}
-			{isParent ? (
+			{/* {isParent ? (
 				<>
 					<TreeNode label={<div>A</div>}>
 						{sideAChildren?.length > 0 ? sideAChildren?.map((child) => <PersonNode {...child} />) : undefined}
@@ -88,7 +108,7 @@ function PersonNode({
 						{children?.length > 0 ? children.map((child) => <PersonNode {...child} />) : undefined}
 					</TreeNode>
 				</>
-			)}
+			)} */}
 		</TreeNode>
 	);
 }

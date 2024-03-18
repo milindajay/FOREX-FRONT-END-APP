@@ -264,20 +264,25 @@ const AllRoutes = () => {
 							),
 						},
 						{
-							path: 'courses/Forex/Beginner',
-							element: <LoadComponent component={BeginnerCourse} />,
-						},
-						{
-							path: 'courses/Forex/Intermediate',
-							element: <LoadComponent component={IntermediateCourse} />,
-						},
-						{
-							path: 'courses/Forex/Advanced',
-							element: <LoadComponent component={AdvancedCourse} />,
-						},
-						{
-							path: 'courses/Forex/Master',
-							element: <LoadComponent component={MasterCourse} />,
+							path: 'courses',
+							children: [
+								{
+									path: 'Forex/Beginner',
+									element: <LoadComponent component={BeginnerCourse} />,
+								},
+								{
+									path: 'Forex/Intermediate',
+									element: <LoadComponent component={IntermediateCourse} />,
+								},
+								{
+									path: 'Forex/Advanced',
+									element: <LoadComponent component={AdvancedCourse} />,
+								},
+								{
+									path: 'Forex/Master',
+									element: <LoadComponent component={MasterCourse} />,
+								},
+							],
 						},
 					],
 				},
