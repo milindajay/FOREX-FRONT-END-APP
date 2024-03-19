@@ -17,21 +17,21 @@ const Statistics = () => {
 			<Col xl={3} md={6}>
 				<StatisticsWidget2
 					variant="success"
-					title="Sales Summary"
+					title="Direct Sales"
 					trendValue="35%"
 					trendIcon="mdi mdi-trending-up"
-					stats={user.salesSummary}
-					subTitle="Total Sales"
+					stats={user.directSaleCommission}
+					subTitle="Total Direct Sales"
 					progress={100}
 				/>
 			</Col>
 			<Col xl={3} md={6}>
 				<StatisticsWidget2
 					variant="success"
-					title="Total Withdrawals"
+					title="Binary Earnings"
 					trendValue="10%"
 					trendIcon="mdi mdi-trending-up"
-					stats={user.debitCount}
+					stats={user.binaryCommission}
 					subTitle="Total Withdrawals"
 					progress={100}
 				/>
