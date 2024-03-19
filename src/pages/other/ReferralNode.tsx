@@ -22,8 +22,6 @@ function PersonNode({
 	introducer,
 	sideAPoints,
 	sideBPoints,
-	sideARemaining,
-	sideBRemaining,
 	referral_side_A_member_id,
 	referral_side_B_member_id,
 	isParent = false,
@@ -52,8 +50,8 @@ function PersonNode({
 					<div className="text-muted mt-1 text-start">
 						<p className="text-dark">Side A Points: {sideAPoints} </p>
 						<p className="text-dark">Side B Points: {sideBPoints} </p>
-						<p className="text-dark">Side A Remaining: {sideARemaining} </p>
-						<p className="text-dark">Side B Remaining: {sideBRemaining} </p>
+						{/* <p className="text-dark">Side A Remaining: {sideARemaining} </p>
+						<p className="text-dark">Side B Remaining: {sideBRemaining} </p> */}
 					</div>
 
 					{/* Render LineConnectors and child PersonNodes if they exist */}
