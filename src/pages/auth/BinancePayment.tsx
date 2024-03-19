@@ -53,7 +53,7 @@ const BinancePayment = (props: Props) => {
 
 	return (
 		<div className="card bg-light p-4">
-			<h1>Pay with Binance</h1>
+			<h1>Pay with Crypto</h1>
 
 			<form className="d-flex flex-column align-items-center mt-4" onSubmit={handleSubmit}>
 				<img src={BinanceQrCode} alt="Binance QR Code" style={{ maxWidth: '16rem' }} />
@@ -62,9 +62,9 @@ const BinancePayment = (props: Props) => {
 					className="d-flex flex-column align-items-center mt-2 mb-2"
 					style={{ cursor: 'pointer' }}
 					onClick={() =>
-						navigator.clipboard.writeText(BINANCE_ADDRESS).then(() => alert('Binance Address copied successfully.'))
+						navigator.clipboard.writeText(BINANCE_ADDRESS).then(() => alert('Address copied successfully.'))
 					}>
-					<h4 className="font-weight-bold" style={{ fontSize: '1.1rem' }}>
+					<h4 className="font-weight-bold" style={{ fontSize: '1em' }}>
 						{BINANCE_ADDRESS}
 					</h4>
 					<span>Click to copy</span>

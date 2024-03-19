@@ -48,23 +48,37 @@ const Payment = () => {
 	}, [newPlan?.stripeTotal, user.address, user.email, user.firstName, user.lastName]);
 
 	return (
-		<div className="d-flex align-items-center justify-content-center" style={{ height: '100vh' }}>
+		<div className="payment-container d-flex justify-content-center align-items-center text-center mx-auto mt-5">
 			{newPlan && clientSecret && (
-				<div className="d-flex flex-column align-items-center">
-					<h2 className="mb-4">
-						Payment = Starter (${newPlan.product_price}){' '}
-						{newPlan.administrationFee > 0 ? `+ Administration Fee ($${newPlan.administrationFee})` : ''} = $
-						{newPlan.total}
-					</h2>
-					<div className="d-flex" style={{ gap: '5rem' }}>
-						<Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
-							<StripeCheckout clientSecret={clientSecret} newPlanData={newPlan} />
-						</Elements>
-						<div className="d-flex align-items-center justify-content-center" style={{ maxHeight: '100%' }}>
+
+				<div className="container-fluid mx-auto mt-2">
+					<div className="row justify-content-center mx-auto">
+
+						<div className="col">
+							<h2 className="mb-4">
+								You will Pay: (${newPlan.product_price}){' '}
+								{newPlan.administrationFee > 0 ? `+ Administration Fee ($${newPlan.administrationFee})` : ''} = $
+								{newPlan.total}
+							</h2>
+						</div>
+
+					</div>
+					<div className="row justify-content-center mx-auto">
+						<div className="col-md-4 col-sm-10">
+							<Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
+								<StripeCheckout clientSecret={clientSecret} newPlanData={newPlan} />
+							</Elements>
+						</div>
+
+						<div className="col-md-2 col-sm-10 text-center my-2">
 							<h3>OR</h3>
 						</div>
-						<BinancePayment planData={newPlan} />
+						<div className="col-md-4 col-sm-10">
+							<BinancePayment planData={newPlan} />
+						</div>
 					</div>
+
+
 				</div>
 			)}
 		</div>
