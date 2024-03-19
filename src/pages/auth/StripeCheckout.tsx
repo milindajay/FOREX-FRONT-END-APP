@@ -42,7 +42,7 @@ const StripeCheckout = (props: Props) => {
 	);
 
 	return (
-		<form id="payment-form" className="mw-50" onSubmit={handleSubmit}>
+		<form id="payment-form" className="mw-60 card bg-light p-4" onSubmit={handleSubmit}>
 			<h1>Pay with Stripe</h1>
 			<PaymentElement />
 			<Button className="waves-effect waves-light btn btn-success mt-4" disabled={isProcessing} type="submit">
