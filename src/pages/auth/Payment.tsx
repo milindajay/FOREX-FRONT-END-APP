@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import StripeCheckout from './StripeCheckout';
 import { useRedux } from '../../hooks';
 import BinancePayment from './BinancePayment';
+import { Button } from 'react-bootstrap';
 
 export interface NewPlan {
 	stripeTotal: number;
@@ -28,6 +29,7 @@ const Payment = () => {
 
 	const [newPlan, setNewPlan] = useState<NewPlan>();
 	const [clientSecret, setClientSecret] = useState<string>();
+	const [activePaymentMethod, setActivePaymentMethod] = useState<'STRIPE' | 'BINANCE'>('STRIPE');
 
 	useEffect(() => {
 		axios.get<NewPlan>(`/payment/get-products/${user.currentPlan}`).then((res) => setNewPlan(res.data));
@@ -50,10 +52,8 @@ const Payment = () => {
 	return (
 		<div className="payment-container d-flex justify-content-center align-items-center text-center mx-auto mt-5">
 			{newPlan && clientSecret && (
-
-				<div className="container-fluid mx-auto mt-2">
+				<div className="container mt-2">
 					<div className="row justify-content-center mx-auto">
-
 						<div className="col">
 							<h2 className="mb-4">
 								You will Pay: (${newPlan.product_price}){' '}
@@ -61,24 +61,32 @@ const Payment = () => {
 								{newPlan.total}
 							</h2>
 						</div>
-
+					</div>
+					<div className="d-flex justify-content-center mb-4" style={{ gap: '2rem' }}>
+						<Button
+							className={`btn ${activePaymentMethod === 'STRIPE' ? 'btn-primary' : 'btn-light'}`}
+							onClick={() => setActivePaymentMethod('STRIPE')}>
+							Pay with Stripe
+						</Button>
+						<Button
+							className={`btn ${activePaymentMethod === 'BINANCE' ? 'btn-primary' : 'btn-light'}`}
+							onClick={() => setActivePaymentMethod('BINANCE')}>
+							Pay With Binance
+						</Button>
 					</div>
 					<div className="row justify-content-center mx-auto">
-						<div className="col-md-4 col-sm-10">
-							<Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
-								<StripeCheckout clientSecret={clientSecret} newPlanData={newPlan} />
-							</Elements>
-						</div>
-
-						<div className="col-md-2 col-sm-10 text-center my-2">
-							<h3>OR</h3>
-						</div>
-						<div className="col-md-4 col-sm-10">
-							<BinancePayment planData={newPlan} />
-						</div>
+						{activePaymentMethod === 'STRIPE' ? (
+							<div className="col-md-4 col-sm-10">
+								<Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
+									<StripeCheckout clientSecret={clientSecret} newPlanData={newPlan} />
+								</Elements>
+							</div>
+						) : (
+							<div className="col-md-4 col-sm-10">
+								<BinancePayment planData={newPlan} />
+							</div>
+						)}
 					</div>
-
-
 				</div>
 			)}
 		</div>
