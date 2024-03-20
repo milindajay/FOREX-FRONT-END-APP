@@ -39,22 +39,22 @@ const Statistics = () => {
 			<Col xl={3} md={6}>
 				<StatisticsWidget2
 					variant="success"
-					title="Total intro Count"
-					trendValue="10%"
+					title="Total Cashback"
+					trendValue="32%"
 					trendIcon="mdi mdi-trending-up"
-					stats={user.introCount}
-					subTitle="Total intro Count"
+					stats={user.cashBack}
+					subTitle="Total Cashback"
 					progress={100}
 				/>
 			</Col>
 			<Col xl={3} md={6}>
 				<StatisticsWidget2
 					variant="success"
-					title="Total Cashback"
-					trendValue="32%"
+					title="Current Balance"
+					trendValue="10%"
 					trendIcon="mdi mdi-trending-up"
-					stats={user.cashBack}
-					subTitle="Total Cashback"
+					stats={user.currentBalance}
+					subTitle="Current Balance"
 					progress={100}
 				/>
 			</Col>

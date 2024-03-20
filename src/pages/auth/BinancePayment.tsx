@@ -33,7 +33,7 @@ const BinancePayment = (props: Props) => {
 
 			if (trx && trx.toString().length > 0) {
 				axios
-					.post(`/payment/verify-binance-payment`, {
+					.post(`/payment/binance-payment-completed`, {
 						trx,
 						member_id: user.id,
 						amount: planData.total,
