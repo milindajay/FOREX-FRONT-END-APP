@@ -8,7 +8,7 @@ on:
 env:
   CI: false
   REACT_APP_API_URL: 'https://api.forexcellencenet.com/api/'
-  REACT_APP_STRIPE_PUBLISHABLE_KEY: 'pk_test_51OomIhD9P4vhnLhFrizifFGAriyHhETbWoF79us1AydjBS5HJC2cGpuCOVM1KdqMQb3RRTsFc3wJOKTVKzQ60ZeQ00QnJUT46b'
+  REACT_APP_STRIPE_PUBLISHABLE_KEY: 'pk_live_51OomIhD9P4vhnLhFNcgYOEYUomDs7mseNyNy1jv40UvSX3F5L8hna3WWwaUH0hvg9AuJaw6PoCfaywKdhjkAqmSu00CUi7bGxJ'
 
 jobs:
   web-deploy:
