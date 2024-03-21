@@ -45,7 +45,7 @@ function PersonNode({
 					</div>
 					<div className="text-muted">Member ID : {member_id}</div>
 					{/* <div className="text-muted">{children?.length} : 0</div> */}
-					<div className="text-muted">Your Introducer: {introducer}</div>
+					<div className="text-muted">Introducer: {introducer}</div>
 					<hr />
 					<div className="text-muted mt-1 text-start">
 						<p className="text-dark">Side A Points: {sideAPoints} </p>
@@ -136,5 +136,7 @@ const ReferralNode: FC<ReferralNodeProps> = ({ members }) => {
 		</Card>
 	);
 };
+
+
 
 export default ReferralNode;
