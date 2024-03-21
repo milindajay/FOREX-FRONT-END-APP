@@ -64,13 +64,14 @@ const BinancePayment = (props: Props) => {
 					onClick={() =>
 						navigator.clipboard.writeText(BINANCE_ADDRESS).then(() => alert('Address copied successfully.'))
 					}>
+					<h3 className="font-weight-bold"> TRC20</h3>	
 					<h4 className="font-weight-bold" style={{ fontSize: '1em' }}>
 						{BINANCE_ADDRESS}
 					</h4>
 					<span>Click to copy</span>
 				</div>
 
-				<input type="text" className="trx-field form-control" id="trx" placeholder="Enter your TRX" name="trx" />
+				<input type="text" className="trx-field form-control" id="trx" placeholder="Enter your TXID" name="trx" />
 				<Button className="waves-effect waves-light btn btn-success mt-4" disabled={isSubmitAvailable} type="submit">
 					Submit
 				</Button>
