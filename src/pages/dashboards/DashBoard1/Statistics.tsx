@@ -32,7 +32,7 @@ const Statistics = () => {
 					trendValue="10%"
 					trendIcon="mdi mdi-trending-up"
 					stats={user.binaryCommission}
-					subTitle="Total Withdrawals"
+					subTitle="Binary Earnings"
 					progress={100}
 				/>
 			</Col>

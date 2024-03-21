@@ -118,25 +118,32 @@ const ReferralNode: FC<ReferralNodeProps> = ({ members }) => {
 	return (
 		<Card className="overflow-auto">
 			<Card.Body>
-				<Tree
-					label={
-						<div>
-							{searchParams.get('userId') && (
-								<button className="btn btn-secondary" onClick={() => navigate(-1)}>
-									Go Back
-								</button>
-							)}
-						</div>
-					}>
-					{members.map((member) => (
-						<PersonNode {...member} isParent />
-					))}
-				</Tree>
+				{members.length > 0 ? (
+					<Tree
+						label={
+							<div>
+								{searchParams.get('userId') && (
+									<button className="btn btn-secondary" onClick={() => navigate(-1)}>
+										Go Back
+									</button>
+								)}
+							</div>
+						}>
+						{members.map((member) => (
+							<PersonNode {...member} isParent />
+						))}
+					</Tree>
+				) : (
+					<div className="d-flex justify-content-center align-items-center flex-column" style={{ gap: '1rem' }}>
+						<span>Seems like the selected user id '{searchParams.get('userId')}' is not found in the system.</span>
+						<button className="btn btn-secondary" onClick={() => navigate(-1)}>
+							Go Back
+						</button>
+					</div>
+				)}
 			</Card.Body>
 		</Card>
 	);
 };
-
-
 
 export default ReferralNode;

@@ -6,6 +6,7 @@ import { usePageTitle } from '../../hooks';
 import { useRedux } from '../../hooks'; // Make sure the import path matches where you have defined useRedux
 import ReferralNode from './ReferralNode';
 import { useSearchParams } from 'react-router-dom';
+import UserIdSearch from './UserIdSearch';
 
 export interface MemberData {
 	member_id: string;
@@ -71,7 +72,10 @@ const ReferralTree: FC = () => {
 	return (
 		<Card>
 			<Card.Header>
-				<Card.Title>Referral Tree</Card.Title>
+				<Card.Title className="d-flex align-items-center justify-content-between">
+					<div>Referral Tree</div>
+					{user && referralData && <UserIdSearch />}
+				</Card.Title>
 			</Card.Header>
 			<Card.Body>
 				{user ? (
