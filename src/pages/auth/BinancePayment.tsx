@@ -53,7 +53,7 @@ const BinancePayment = (props: Props) => {
 
 	return (
 		<div className="card bg-light p-4">
-			<h1>Pay with Crypto</h1>
+			<h1>Pay with USDT</h1>
 
 			<form className="d-flex flex-column align-items-center mt-4" onSubmit={handleSubmit}>
 				<img src={BinanceQrCode} alt="Binance QR Code" style={{ maxWidth: '16rem' }} />

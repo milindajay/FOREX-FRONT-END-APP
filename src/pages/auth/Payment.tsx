@@ -71,7 +71,7 @@ const Payment = () => {
 						<Button
 							className={`btn ${activePaymentMethod === 'BINANCE' ? 'btn-primary' : 'btn-light'}`}
 							onClick={() => setActivePaymentMethod('BINANCE')}>
-							Pay With Binance
+							Pay With Crypto
 						</Button>
 					</div>
 					<div className="row justify-content-center mx-auto">
