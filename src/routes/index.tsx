@@ -30,6 +30,8 @@ const PaymentCompleted = React.lazy(() => import('../pages/auth/PaymentCompletio
 
 // dashboards
 const DashBoard1 = React.lazy(() => import('../pages/dashboards/DashBoard1/'));
+// Wallet
+const MyWallet = React.lazy(() => import('../pages/wallet/MyWallet'));
 
 // apps
 const CalendarApp = React.lazy(() => import('../pages/apps/Calendar'));
@@ -206,6 +208,10 @@ const AllRoutes = () => {
 				{
 					path: 'dashboard',
 					element: <LoadComponent component={DashBoard1} />,
+				},
+				{
+					path: 'my-wallet',
+					element: <LoadComponent component={MyWallet} />,
 				},
 				{
 					path: 'apps',

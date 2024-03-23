@@ -6,7 +6,6 @@ import Loader from '../../components/Loader'; // Ensure this path is correct
 import { VerticalForm, FormInput } from '../../components/form/'; // Ensure this path is correct
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
 import { signup } from '../../helpers';
 import { useSearchParams } from 'react-router-dom';
 // import { Navigate, redirect } from 'react-router-dom';
@@ -25,6 +24,7 @@ interface UserData {
 	dateOfBirth: string;
 	nationality: string;
 	referral_type: string;
+	isAcceptedConditions: boolean;
 }
 
 const RegistrationForm = () => {
@@ -42,6 +42,7 @@ const RegistrationForm = () => {
 		dateOfBirth: '',
 		nationality: '',
 		referral_type: '',
+		isAcceptedConditions: false,
 	});
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ const RegistrationForm = () => {
 		setFormData((data) => ({ ...data, introducer: introducerId, referral_type: placement }));
 	}, [URLSearchParams]);
 
-	const handleChange = (name: keyof UserData, value: string) => {
+	const handleChange = <Name extends keyof UserData>(name: Name, value: UserData[Name]) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
@@ -73,12 +74,9 @@ const RegistrationForm = () => {
 		dateOfBirth: Yup.date().required('Date of birth is required'),
 		nationality: Yup.string().required('Nationality is required'),
 		referral_type: Yup.string().required('Referral type is required'),
+		isAcceptedConditions: Yup.boolean().required('You must accept Terms and conditions.'),
 
 		// Define the rest of your validation schema here
-	});
-
-	useForm({
-		resolver: yupResolver(formSchema),
 	});
 
 	const handleSubmit = async () => {
@@ -113,7 +111,7 @@ const RegistrationForm = () => {
 			{error && <Alert variant="danger">{error}</Alert>}
 			{loading && <Loader />}
 
-			<VerticalForm onSubmit={handleSubmit}>
+			<VerticalForm onSubmit={handleSubmit} resolver={yupResolver(formSchema)}>
 				<FormInput
 					label={'Introducer'}
 					type="text"
@@ -220,9 +218,9 @@ const RegistrationForm = () => {
 				<FormInput
 					label={'I accept Terms and Conditions'}
 					type="checkbox"
-					name="checkboxsignup"
+					name="isAcceptedConditions"
 					containerClass={'mb-3'}
-					onChange={(e) => handleChange('introducer', e.target.value)}
+					onChange={(e) => handleChange('isAcceptedConditions', e.target.checked)}
 					value={formData.introducer}
 				/>
 
