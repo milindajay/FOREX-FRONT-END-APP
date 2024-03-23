@@ -24,7 +24,6 @@ interface UserData {
 	dateOfBirth: string;
 	nationality: string;
 	referral_type: string;
-	isAcceptedConditions: boolean;
 }
 
 const RegistrationForm = () => {
@@ -42,7 +41,6 @@ const RegistrationForm = () => {
 		dateOfBirth: '',
 		nationality: '',
 		referral_type: '',
-		isAcceptedConditions: false,
 	});
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
@@ -62,19 +60,18 @@ const RegistrationForm = () => {
 	};
 
 	const formSchema = Yup.object().shape({
-		introducer: Yup.string().required('Introducer code is required'),
-		firstName: Yup.string().required('First name is required'),
-		lastName: Yup.string().required('Last name is required'),
-		email: Yup.string().email('Invalid email address').required('Email is required'),
+		// introducer: Yup.string().required('Introducer code is required'),
+		// firstName: Yup.string().required('First name is required'),
+		// lastName: Yup.string().required('Last name is required'),
+		// email: Yup.string().email('Invalid email address').required('Email is required'),
 		password: Yup.string().required('Password is required'),
-		mobileNumber: Yup.string().required('Mobile number is required'),
-		secondaryPhoneNumber: Yup.string().required('Secondary phone number is required'),
-		address: Yup.string().required('Address is required'),
-		nationalIdentityNumber: Yup.string().required('Identity card number is required'),
-		dateOfBirth: Yup.date().required('Date of birth is required'),
-		nationality: Yup.string().required('Nationality is required'),
-		referral_type: Yup.string().required('Referral type is required'),
-		isAcceptedConditions: Yup.boolean().required('You must accept Terms and conditions.'),
+		// mobileNumber: Yup.string().required('Mobile number is required'),
+		// secondaryPhoneNumber: Yup.string().required('Secondary phone number is required'),
+		// address: Yup.string().required('Address is required'),
+		// nationalIdentityNumber: Yup.string().required('Identity card number is required'),
+		// dateOfBirth: Yup.date().required('Date of birth is required'),
+		// nationality: Yup.string().required('Nationality is required'),
+		// referral_type: Yup.string().required('Referral type is required'),
 
 		// Define the rest of your validation schema here
 	});
@@ -215,15 +212,8 @@ const RegistrationForm = () => {
 					onChange={(e) => handleChange('dateOfBirth', e.target.value)}
 					value={formData.dateOfBirth}
 				/>
-				<FormInput
-					label={'I accept Terms and Conditions'}
-					type="checkbox"
-					name="isAcceptedConditions"
-					containerClass={'mb-3'}
-					onChange={(e) => handleChange('isAcceptedConditions', e.target.checked)}
-					value={formData.introducer}
-				/>
 
+				<p className='text-center'>By Siging up you will accept our Terms and Conditions</p>
 				<div className="mb-3 text-center">
 					<Button type="submit" disabled={loading}>
 						Sign Up
