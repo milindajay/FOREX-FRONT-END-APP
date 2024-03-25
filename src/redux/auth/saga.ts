@@ -10,6 +10,7 @@ import {
 	logout as logoutApi,
 	signup as signupApi,
 	forgotPassword as forgotPasswordApi,
+	refreshUserData as refreshUserDataApi,
 } from '../../helpers/';
 
 // actions
@@ -20,6 +21,7 @@ import { AuthActionTypes } from './constants';
 
 type UserData = {
 	payload: {
+		id: string;
 		username: string;
 		password: string;
 		fullname: string;
@@ -86,6 +88,28 @@ function* forgotPassword({ payload: { email } }: UserData): SagaIterator {
 		yield put(authApiResponseError(AuthActionTypes.FORGOT_PASSWORD, error));
 	}
 }
+
+export function* refereshUserData({ payload: { id } }: UserData): SagaIterator {
+	// try {
+	// 	const response = yield call(refreshUserDataApi, { userId: id });
+	// 	yield put(authApiResponseSuccess(AuthActionTypes.REFRESH_USER_DATA, response.data));
+	// } catch (error: any) {
+	// 	yield put(authApiResponseError(AuthActionTypes.REFRESH_USER_DATA, error));
+	// }
+	try {
+		const response = yield call(refreshUserDataApi, { userId: id });
+		const user = response.data;
+		console.log(user);
+		// NOTE - You can change this according to response format from your api
+		// api.setLoggedInUser(user);
+		yield put(authApiResponseSuccess(AuthActionTypes.REFRESH_USER_DATA, user));
+	} catch (error: any) {}
+}
+
+export function* watchRefereshUserData() {
+	yield takeEvery(AuthActionTypes.REFRESH_USER_DATA, refereshUserData);
+}
+
 export function* watchLoginUser() {
 	yield takeEvery(AuthActionTypes.LOGIN_USER, login);
 }
@@ -103,7 +127,13 @@ export function* watchForgotPassword(): any {
 }
 
 function* authSaga() {
-	yield all([fork(watchLoginUser), fork(watchLogout), fork(watchSignup), fork(watchForgotPassword)]);
+	yield all([
+		fork(watchLoginUser),
+		fork(watchLogout),
+		fork(watchSignup),
+		fork(watchForgotPassword),
+		fork(watchRefereshUserData),
+	]);
 }
 
 export default authSaga;

@@ -23,4 +23,9 @@ function forgotPassword(params: { email: string }) {
 	return api.create(`${baseUrl}`, params);
 }
 
-export { login, logout, signup, forgotPassword };
+function refreshUserData(params: { userId: string }) {
+	const baseUrl = '/auth/user';
+	return api.get(`${baseUrl}/${params.userId}`);
+}
+
+export { login, logout, signup, forgotPassword, refreshUserData };

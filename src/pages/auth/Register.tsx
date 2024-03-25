@@ -60,18 +60,18 @@ const RegistrationForm = () => {
 	};
 
 	const formSchema = Yup.object().shape({
-		// introducer: Yup.string().required('Introducer code is required'),
-		// firstName: Yup.string().required('First name is required'),
-		// lastName: Yup.string().required('Last name is required'),
-		// email: Yup.string().email('Invalid email address').required('Email is required'),
+		introducer: Yup.string().required('Introducer code is required'),
+		firstName: Yup.string().required('First name is required'),
+		lastName: Yup.string().required('Last name is required'),
+		email: Yup.string().email('Invalid email address').required('Email is required'),
 		password: Yup.string().required('Password is required'),
-		// mobileNumber: Yup.string().required('Mobile number is required'),
-		// secondaryPhoneNumber: Yup.string().required('Secondary phone number is required'),
-		// address: Yup.string().required('Address is required'),
-		// nationalIdentityNumber: Yup.string().required('Identity card number is required'),
-		// dateOfBirth: Yup.date().required('Date of birth is required'),
-		// nationality: Yup.string().required('Nationality is required'),
-		// referral_type: Yup.string().required('Referral type is required'),
+		mobileNumber: Yup.string().required('Mobile number is required'),
+		secondaryPhoneNumber: Yup.string().required('Secondary phone number is required'),
+		address: Yup.string().required('Address is required'),
+		nationalIdentityNumber: Yup.string().required('Identity card number is required'),
+		dateOfBirth: Yup.date().required('Date of birth is required'),
+		nationality: Yup.string().required('Nationality is required'),
+		referral_type: Yup.string().required('Referral type is required'),
 
 		// Define the rest of your validation schema here
 	});
@@ -213,7 +213,7 @@ const RegistrationForm = () => {
 					value={formData.dateOfBirth}
 				/>
 
-				<p className='text-center'>By Siging up you will accept our Terms and Conditions</p>
+				<p className="text-center">By Siging up you will accept our Terms and Conditions</p>
 				<div className="mb-3 text-center">
 					<Button type="submit" disabled={loading}>
 						Sign Up

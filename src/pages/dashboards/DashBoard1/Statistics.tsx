@@ -21,7 +21,7 @@ const Statistics = () => {
 					trendValue="35%"
 					trendIcon="mdi mdi-trending-up"
 					stats={user.directSaleCommission}
-					subTitle="Total Direct Sales"
+					subTitle="USDT"
 					progress={100}
 				/>
 			</Col>
@@ -32,7 +32,7 @@ const Statistics = () => {
 					trendValue="10%"
 					trendIcon="mdi mdi-trending-up"
 					stats={user.binaryCommission}
-					subTitle="Binary Earnings"
+					subTitle="USDT"
 					progress={100}
 				/>
 			</Col>
@@ -43,7 +43,7 @@ const Statistics = () => {
 					trendValue="32%"
 					trendIcon="mdi mdi-trending-up"
 					stats={user.cashBack}
-					subTitle="Total Cashback"
+					subTitle="USDT"
 					progress={100}
 				/>
 			</Col>
@@ -54,7 +54,7 @@ const Statistics = () => {
 					trendValue="10%"
 					trendIcon="mdi mdi-trending-up"
 					stats={user.currentBalance}
-					subTitle="Current Balance"
+					subTitle="USDT"
 					progress={100}
 				/>
 			</Col>

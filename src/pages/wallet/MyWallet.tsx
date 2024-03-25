@@ -6,13 +6,16 @@ import WalletStatistics from './WalletStatistics';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { refreshUserData } from '../../redux/actions';
 
 type WithdrawalData = {
-	withdrawalAmount: string;
+	withdrawalAmount: number;
 	walletAddress: string;
 };
 
 const MyWallet = () => {
+	const navigate = useNavigate();
 	usePageTitle({
 		title: 'My Wallet',
 		breadCrumbItems: [
@@ -24,13 +27,13 @@ const MyWallet = () => {
 		],
 	});
 
-	const { appSelector } = useRedux();
+	const { appSelector, dispatch } = useRedux();
 	const { user } = appSelector((state) => ({
 		user: state.Auth.user,
 	}));
 
 	const [formData, setFormData] = useState<WithdrawalData>({
-		withdrawalAmount: '',
+		withdrawalAmount: 0,
 		walletAddress: '',
 	});
 	const [error, setError] = useState<string | null>(null);
@@ -45,18 +48,29 @@ const MyWallet = () => {
 		axios
 			.post('/payment/withdraw', {
 				member_id: user.id,
-				withdrawalAmount: parseFloat(formData.withdrawalAmount),
+				withdrawalAmount: formData.withdrawalAmount,
 				walletAddress: formData.walletAddress,
 			})
-			.then((res) => setError(null))
+			.then((res) => {
+				setError(null);
+				alert(res.data?.message ?? 'Withdrawal request successfully added.');
+
+				const data = refreshUserData(user.id);
+				dispatch(data);
+
+				navigate('/dashboard', { state: { refresh: true } });
+			})
 			.catch((err) => setError(err))
 			.finally(() => setIsProcessing(false));
-	}, [formData, user.id]);
+	}, [dispatch, formData.walletAddress, formData.withdrawalAmount, navigate, user.id]);
 
 	const formSchema = useMemo(
 		() =>
 			Yup.object().shape({
-				withdrawalAmount: Yup.string().required('Withdrawal Amount is required'),
+				withdrawalAmount: Yup.number()
+					.required('Withdrawal Amount is required')
+					.moreThan(10)
+					.required('Withdrawal amount must be greater than 10'),
 				walletAddress: Yup.string().required('Wallet Address is required'),
 			}),
 		[]
@@ -72,7 +86,7 @@ const MyWallet = () => {
 				<h4>Make a Withdrawal Request</h4>
 
 				<div className="card p-4">
-					{error ? <Alert variant="danger">{error}</Alert> : undefined}
+					{error ? <Alert variant="danger">{error}</Alert> : ''}
 
 					<VerticalForm formClass="" onSubmit={handleOnSubmit} resolver={yupResolver(formSchema)}>
 						<FormInput
@@ -81,14 +95,13 @@ const MyWallet = () => {
 							name="withdrawalAmount"
 							placeholder={'Withdrawal Amount'}
 							containerClass={'mb-3'}
-							onChange={(e) => handleChange('withdrawalAmount', e.target.value)}
+							onChange={(e) => handleChange('withdrawalAmount', parseFloat(e.target.value))}
 							value={formData.withdrawalAmount}
 						/>
-						{formData.withdrawalAmount && (
-							<p>
-								{(parseFloat(formData.withdrawalAmount) * (106 / 100)).toFixed(3)} USDT will be withdrawn from your
-								balance.
-							</p>
+						{formData.withdrawalAmount ? (
+							<p>{(formData.withdrawalAmount * (106 / 100)).toFixed(3)} USDT will be withdrawn from your balance.</p>
+						) : (
+							''
 						)}
 
 						<FormInput

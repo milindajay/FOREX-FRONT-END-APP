@@ -59,7 +59,7 @@ class APICore {
 	/**
 	 * Fetches data from given url
 	 */
-	get = (url: string, params: any) => {
+	get = (url: string, params?: any) => {
 		let response;
 		if (params) {
 			var queryString = params
@@ -69,7 +69,7 @@ class APICore {
 				: '';
 			response = axios.get(`${url}?${queryString}`, params);
 		} else {
-			response = axios.get(`${url}`, params);
+			response = axios.get(`${url}`);
 		}
 		return response;
 	};

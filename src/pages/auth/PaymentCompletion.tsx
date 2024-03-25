@@ -2,11 +2,12 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRedux } from '../../hooks';
+import { refreshUserData } from '../../redux/actions';
 
 const PaymentCompletion = () => {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
-	const { appSelector } = useRedux();
+	const { appSelector, dispatch } = useRedux();
 
 	const { user } = appSelector((state) => ({
 		user: state.Auth.user,
@@ -24,8 +25,13 @@ const PaymentCompletion = () => {
 				`/payment/verify-payment?member_id=${user.id}&introducer=${user.introducer}&amount=${amount}&plan=${plan}&referral_points=${referral_points}&referral_type=${user.referralType}&payment_intent=${payment_intent}&payment_intent_client_secret=${payment_intent_client_secret}&redirect_status=${redirect_status}
                 `
 			)
-			.then((res) => navigate('/auth/login'));
-	}, [navigate, searchParams, user.id, user.introducer, user.referralType]);
+			.then((res) => {
+				const data = refreshUserData(user.id);
+				dispatch(data);
+
+				navigate('/dashboard');
+			});
+	}, [dispatch, navigate, searchParams, user.id, user.introducer, user.referralType]);
 
 	return <h1>Payment Completed</h1>;
 };

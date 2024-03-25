@@ -6,6 +6,7 @@ import BinanceQrCode from '../../assets/images/payments/binance_qr_code.png';
 import { useRedux } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { NewPlan } from './Payment';
+import { refreshUserData } from '../../redux/actions';
 
 const BINANCE_ADDRESS = 'THH5W6nkCFEYuLhY3a2o3NGPU8pPQcpNJM';
 
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const BinancePayment = (props: Props) => {
-	const { appSelector } = useRedux();
+	const { appSelector, dispatch } = useRedux();
 	const navigate = useNavigate();
 	const { user } = appSelector((state) => ({
 		user: state.Auth.user,
@@ -39,7 +40,14 @@ const BinancePayment = (props: Props) => {
 						amount: planData.total,
 						plan_id: planData.id,
 					})
-					.then((res) => res.status === 200 && navigate('/auth/login'))
+					.then((res) => {
+						if (res.status === 200) {
+							const data = refreshUserData(user.id);
+							dispatch(data);
+
+							navigate('/auth/login');
+						}
+					})
 					.catch((err) => {
 						console.error(err);
 						setIsSubmitAvailable(false);
@@ -48,7 +56,7 @@ const BinancePayment = (props: Props) => {
 				setIsSubmitAvailable(false);
 			}
 		},
-		[navigate, planData.id, planData.total, user.id]
+		[dispatch, navigate, planData.id, planData.total, user.id]
 	);
 
 	return (
@@ -64,7 +72,7 @@ const BinancePayment = (props: Props) => {
 					onClick={() =>
 						navigator.clipboard.writeText(BINANCE_ADDRESS).then(() => alert('Address copied successfully.'))
 					}>
-					<h3 className="font-weight-bold"> TRC20</h3>	
+					<h3 className="font-weight-bold"> TRC20</h3>
 					<h4 className="font-weight-bold" style={{ fontSize: '1em' }}>
 						{BINANCE_ADDRESS}
 					</h4>

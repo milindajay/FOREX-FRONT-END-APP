@@ -16,38 +16,37 @@ import RevenueChart from './RevenueChart';
 // import { projectDetails } from './data';
 
 const DashBoard1 = () => {
-    // set pagetitle
-    usePageTitle({
-        title: 'DashBoard',
-        breadCrumbItems: [
-            {
-                path: '/dashboard',
-                label: 'DashBoard',
-                active: true,
-            },
-        ],
-    });
+	// set pagetitle
+	usePageTitle({
+		title: 'DashBoard',
+		breadCrumbItems: [
+			{
+				path: '/dashboard',
+				label: 'DashBoard',
+				active: true,
+			},
+		],
+	});
 
-    return (
-        <>
-            <Statistics />
+	return (
+		<>
+			<Statistics />
 
-            <Row>
-                <Col xl={4}>
-                    <SalesChart />
-                </Col>
-                <Col xl={4}>
-                    <StatisticsChart />
-                </Col>
-                <Col xl={4}>
-                    <RevenueChart />
-                </Col>
-            </Row>
+			<Row>
+				<Col xl={4}>
+					<SalesChart />
+				</Col>
+				<Col xl={4}>
+					<StatisticsChart />
+				</Col>
+				<Col xl={4}>
+					<RevenueChart />
+				</Col>
+			</Row>
 
-            {/* <Users /> */}
-
-        </>
-    );
+			{/* <Users /> */}
+		</>
+	);
 };
 
 export default DashBoard1;
