@@ -60,7 +60,7 @@ const RegistrationForm = () => {
 	};
 
 	const formSchema = Yup.object().shape({
-		introducer: Yup.string().required('Introducer code is required'),
+		// introducer: Yup.string().required('Introducer code is required'),
 		firstName: Yup.string().required('First name is required'),
 		lastName: Yup.string().required('Last name is required'),
 		email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -71,7 +71,7 @@ const RegistrationForm = () => {
 		nationalIdentityNumber: Yup.string().required('Identity card number is required'),
 		dateOfBirth: Yup.date().required('Date of birth is required'),
 		nationality: Yup.string().required('Nationality is required'),
-		referral_type: Yup.string().required('Referral type is required'),
+		// referral_type: Yup.string().required('Referral type is required'),
 
 		// Define the rest of your validation schema here
 	});
