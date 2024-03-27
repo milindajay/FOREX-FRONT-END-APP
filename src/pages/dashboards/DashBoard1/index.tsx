@@ -8,6 +8,8 @@ import Statistics from './Statistics';
 import SalesChart from './SalesChart';
 import StatisticsChart from './StatisticsChart';
 import RevenueChart from './RevenueChart';
+// import { useEffect } from 'react';
+// import { refreshUserData } from '../../../redux/actions';
 // import Users from './Users';
 // import Inbox from './Inbox';
 // import Projects from './Projects';
@@ -27,6 +29,16 @@ const DashBoard1 = () => {
 			},
 		],
 	});
+
+	// const { appSelector, dispatch } = useRedux();
+	// const { user } = appSelector((state) => ({
+	// 	user: state.Auth.user,
+	// }));
+
+	// useEffect(() => {
+	// 	const data = refreshUserData(user.id);
+	// 	dispatch(data);
+	// }, [dispatch, user.id]);
 
 	return (
 		<>

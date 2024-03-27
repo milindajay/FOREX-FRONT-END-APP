@@ -89,7 +89,7 @@ function* forgotPassword({ payload: { email } }: UserData): SagaIterator {
 	}
 }
 
-export function* refereshUserData({ payload: { id } }: UserData): SagaIterator {
+export function* refreshUserData({ payload: { id } }: UserData): SagaIterator {
 	// try {
 	// 	const response = yield call(refreshUserDataApi, { userId: id });
 	// 	yield put(authApiResponseSuccess(AuthActionTypes.REFRESH_USER_DATA, response.data));
@@ -101,13 +101,13 @@ export function* refereshUserData({ payload: { id } }: UserData): SagaIterator {
 		const user = response.data;
 		console.log(user);
 		// NOTE - You can change this according to response format from your api
-		// api.setLoggedInUser(user);
+		api.setRefreshedUserData(user);
 		yield put(authApiResponseSuccess(AuthActionTypes.REFRESH_USER_DATA, user));
 	} catch (error: any) {}
 }
 
-export function* watchRefereshUserData() {
-	yield takeEvery(AuthActionTypes.REFRESH_USER_DATA, refereshUserData);
+export function* watchRefreshUserData() {
+	yield takeEvery(AuthActionTypes.REFRESH_USER_DATA, refreshUserData);
 }
 
 export function* watchLoginUser() {
@@ -132,7 +132,7 @@ function* authSaga() {
 		fork(watchLogout),
 		fork(watchSignup),
 		fork(watchForgotPassword),
-		fork(watchRefereshUserData),
+		fork(watchRefreshUserData),
 	]);
 }
 

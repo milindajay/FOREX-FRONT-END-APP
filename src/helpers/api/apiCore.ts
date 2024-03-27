@@ -206,6 +206,14 @@ class APICore {
 			this.setLoggedInUser({ token, ...user, ...modifiedUser });
 		}
 	};
+
+	setRefreshedUserData = (modifiedUser: any) => {
+		let userInfo = sessionStorage.getItem(AUTH_SESSION_KEY);
+		if (userInfo) {
+			const data = JSON.parse(userInfo);
+			this.setLoggedInUser({ ...data, ...modifiedUser });
+		}
+	};
 }
 
 /*
